@@ -1,0 +1,577 @@
+{
+  "generatedAt": "2026-10-27T18:03:39.480Z",
+  "scenarios": [
+    {
+      "id": "T01-M",
+      "app": "messenger",
+      "number": 1,
+      "background": "Pat is your neighbor and organizes the community lunch at the local community center. You belong to the Oak Street Neighbors group chat, where Pat has shared the lunch flyer. You and your neighbor Susan plan to attend together. Susan is not in the group, but you have a private chat with her.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find Pat’s community-lunch flyer in Oak Street Neighbors.",
+          "demands": "Open the group chat. Find and open Pat’s lunch flyer.",
+          "setup": "TASK START. Load all static content across this scenario’s four rows. Withhold scripted messages and calls until their triggers. Start at the conversation list. Pat posted his own flyer in the Oak Street Neighbors group chat: “Community lunch. Saturday, noon. Community Center.” An older cleanup flyer and ordinary messages are also present. The participant, Pat and Lee are members. Susan has a separate private chat. The study account is Alex.",
+          "outcome": "The community-lunch flyer/post by Pat is displayed.",
+          "sourceRow": 2
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "Read Lee’s question and Pat’s reply. Which entrance does Pat recommend, and why?",
+          "demands": "Read the exchange associated with the flyer. Connect “the second one” to the entrances Lee names. State the entrance and reason.",
+          "setup": "Following the flyer, Lee asks: “I use a walker. There’s an entrance on Oak Street and another beside the parking lot. Which would be easier?” Pat replies to Lee: “The second one has a ramp and a step-free path to the lunch room. I’d use that one.”",
+          "outcome": "The parking-lot entrance, because it has a ramp and a step-free path.",
+          "sourceRow": 3
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Pat asks who is coming. Reply that you and Susan will attend and say which entrance you will use.",
+          "demands": "Reply to Pat’s attendance question in the group. Include two people and the entrance identified. Send.",
+          "setup": "Pat’s next group message says: “Who is coming to lunch? Please tell me how many people.” Reply-to-message is available. No participant answer is present.",
+          "outcome": "A reply to Pat confirms two people, the participant and Susan, and the parking-lot entrance.",
+          "sourceRow": 4
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Send Susan the flyer privately and tell her which entrance to meet you at.",
+          "demands": "Forward the found flyer to Susan. Add a message naming the entrance. Check the recipient.",
+          "setup": "Susan’s private conversation is available and does not yet contain the flyer/post. Preserve the participant’s attendance reply. The original flyer/post remains available for sharing.",
+          "outcome": "Susan alone receives the flyer/post and a message to meet at the parking-lot entrance.",
+          "sourceRow": 5
+        }
+      ]
+    },
+    {
+      "id": "T02-M",
+      "app": "messenger",
+      "number": 2,
+      "background": "Omar is the repair-café coordinator. You have a private conversation with him about bringing a lamp for repair. He sent appointment instructions and asked you to call. The study phone already contains a completed repair form in Files.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find Omar’s message about arranging the lamp repair.",
+          "demands": "Open Omar’s private chat. Search or scroll to the appointment message.",
+          "setup": "Start at the conversation list. Omar’s chat contains ordinary conversation and: “Please call me to arrange your lamp repair. We only need to talk; you do not need to turn on your camera.” Files contains “Lamp repair form.pdf” and an unrelated form. Omar is a saved contact.",
+          "outcome": "Omar’s appointment message is displayed.",
+          "sourceRow": 6
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "Does Omar need a voice call or a video call? What tells you that?",
+          "demands": "Interpret the request to talk without a camera.",
+          "setup": "Keep the found message accessible. Do not add a call-type answer to its label.",
+          "outcome": "Voice call; he says no camera is needed.",
+          "sourceRow": 7
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Call Omar using the type of call he requested. Tell him you want to arrange the lamp repair.",
+          "demands": "Start the appropriate call from Omar’s chat. Speak to Omar, listen to his request, then end the call.",
+          "setup": "On an outgoing voice call to Omar, the facilitator/simulator answers: “Hello. To arrange the repair, please send me the completed Lamp repair form from your phone. Thank you.” Allow equivalent participant wording. Log call type, connection and end. No real external call occurs.",
+          "outcome": "A voice call to Omar is completed and ended. The participant hears the request for the repair form.",
+          "sourceRow": 8
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Send Omar the document he requested during the call.",
+          "demands": "Open the attachment picker and Files. Select the requested PDF and send it to Omar.",
+          "setup": "Continue in the same live state. “Lamp repair form.pdf” is available in the study phone’s Files. It has not been sent. Do not repeat the requested filename in the participant instruction.",
+          "outcome": "Omar receives Lamp repair form.pdf, not the unrelated form.",
+          "sourceRow": 9
+        }
+      ]
+    },
+    {
+      "id": "T03-M",
+      "app": "messenger",
+      "number": 3,
+      "background": "Lena is a community-center volunteer helping you practice video calls before an online workshop. You have a private conversation with her about a practice call. A photo of your workshop kit is already saved on the study phone.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find Lena’s instructions for the practice call.",
+          "demands": "Open Lena’s private conversation and find the practice instructions.",
+          "setup": "TASK START. Load all static content across this scenario’s four rows. Withhold scripted messages and calls until their triggers.\n\nStart at the conversation list. Lena’s chat says: “For our practice, I will call you. We will check that we can see and hear each other. Please have the workshop-kit photo ready on your phone.” Gallery contains Workshop kit.jpg and other photos.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "Lena’s practice-call instructions are displayed.",
+          "sourceRow": 10
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "Will this practice need your camera, your microphone, or both?",
+          "demands": "Interpret the purpose of checking sight and sound.",
+          "setup": "Keep Lena’s message visible. The participant need not know technical terminology; “see and hear” is sufficient.",
+          "outcome": "Both camera and microphone.",
+          "sourceRow": 11
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Answer Lena’s call and follow her instructions for checking the sound and camera.",
+          "demands": "Accept the incoming video call. Turn camera off and on, mute and unmute as requested, then end the call.",
+          "setup": "After the Understand response, trigger Lena’s incoming video call. Fixed script: “Please switch your camera off, then back on. Now mute your microphone, then unmute it. That is the practice finished. After we hang up, please send me the photo of your workshop kit.” Pause after each request; log actions without silently correcting them. Enable microphone/camera permission beforehand. Use a facilitator or simulated video partner.",
+          "outcome": "Video call answered; camera and microphone toggles completed; call ended. Score each action separately and do not require a particular order beyond the script.",
+          "sourceRow": 12
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Send Lena the photo she requested during the call.",
+          "demands": "Open the gallery attachment picker in Lena’s chat. Select and send the workshop-kit photo.",
+          "setup": "Workshop kit.jpg remains in the study gallery alongside unrelated images. No image is pre-sent.",
+          "outcome": "Lena receives the workshop-kit photo in her private chat.",
+          "sourceRow": 13
+        }
+      ]
+    },
+    {
+      "id": "T04-M",
+      "app": "messenger",
+      "number": 4,
+      "background": "You and your neighbor Adam have arranged by private message to leave for an event at 4 p.m. Earlier, someone sent you an Oak Street road-closure notice in a private conversation. You cannot remember who sent it. You want to check whether the closure affects your journey. You have already sent Adam a message saying, “Let’s leave at 4 p.m.”",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find the road-closure notice for Oak Street on October 18.",
+          "demands": "Search across private conversations by topic. Compare the street and date of results. Open the matching notice.",
+          "setup": "Start at the private conversation list. Global message search is available. Maya’s private chat contains an Oak Street notice for October 18, initially stating closure from 1–6 p.m. Daniel’s chat has an October 4 Oak Street notice. Susan’s has a Pine Street notice. Ordinary messages follow each notice. Do not identify the correct sender in the participant briefing.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "The October 18 Oak Street notice in Maya’s conversation is displayed.",
+          "sourceRow": 14
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "Read the update to the notice. Will Oak Street be open when you plan to leave at 4 p.m.?",
+          "demands": "Read the correction linked to the found notice. Use the revised reopening time to assess the 4 p.m. departure.",
+          "setup": "Maya’s later message replies to the October 18 notice: “Correction: Oak Street will reopen at 5 p.m., an hour earlier than announced.” The original notice remains visible. The correction is preloaded, not generated by the search.",
+          "outcome": "No. Oak Street will remain closed until 5 p.m.",
+          "sourceRow": 15
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Edit your earlier message to Adam: change the departure time to 6 p.m. and explain why.",
+          "demands": "Open Adam’s chat. Edit the participant’s earlier departure message. Change the time and include the road-reopening information. Save the edit.",
+          "setup": "Alex’s existing outgoing message in Adam’s chat says “Let’s leave at 4 p.m.” Editing is available without a time limit in this sandbox. Preserve the message identity and show an edited indicator. Do not silently edit it for the participant.",
+          "outcome": "The existing message now says departure is 6 p.m. and explains Oak Street remains closed until 5 p.m. A new correction message alone does not satisfy the editing action.",
+          "sourceRow": 16
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Send Adam the updated road-closure information so he can check it too.",
+          "demands": "Return to Maya’s conversation. Select the correction and the original notice if needed for street/date context. Forward or copy the relevant content to Adam.",
+          "setup": "Maya’s correction and original notice remain available. Unrelated personal messages must not be included. Forwarding or copying message text is available in both private-message interfaces.",
+          "outcome": "Adam receives information identifying Oak Street, October 18 and reopening at 5 p.m. Unrelated messages are not shared.",
+          "sourceRow": 17
+        }
+      ]
+    },
+    {
+      "id": "T05-M",
+      "app": "messenger",
+      "number": 5,
+      "background": "You belong to the Book Club group chat, but you have not attended a meeting yet. Nora, the club organizer, shares reading lists and meeting details in that chat. She has shared the November information. Your neighbor Susan would like to attend with you, but she is not in the group.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find Book Club’s November reading list.",
+          "demands": "Open Book Club and its pinned message. Open the reading-list PDF.",
+          "setup": "Start at the conversation list. Book Club has a pinned message from Nora with “November reading list.pdf”: The Lantern House, chapters 1–4. An October list is also present.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "The November reading list is opened.",
+          "sourceRow": 18
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "You can attend only at the library. Read Nora’s update. Which meeting should you choose?",
+          "demands": "Read the meeting details and the correction. Determine which date still uses the library.",
+          "setup": "Alongside the reading list, Nora lists November 6 and November 13, both at 2 p.m. Her update says: “The first meeting is still at the library. The second has moved to Maple Café.” In messaging, this is a reply to the schedule. In social media, it is a comment under the reading-list post.",
+          "outcome": "November 6 at 2 p.m., at the library.",
+          "sourceRow": 19
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Vote in the meeting poll for the option that fits your plan.",
+          "demands": "Locate the November meeting poll. Select the date identified and verify the vote.",
+          "setup": "The Book Club poll offers November 6, 2 p.m. and November 13, 2 p.m. It allows one choice. The participant has not voted. The poll is a group message in messaging and a group-feed post in social media.",
+          "outcome": "Only November 6, 2 p.m. is selected.",
+          "sourceRow": 20
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Send Susan the reading list and tell her when and where the meeting you chose will take place.",
+          "demands": "Forward the reading-list PDF to Susan. Add the selected meeting date, time and place.",
+          "setup": "Nora’s reading-list message/post says guests are welcome. Susan’s private chat exists, but she has not received the list. The PDF is accessible to her without group membership.",
+          "outcome": "Susan receives the November reading list and November 6, 2 p.m., at the library.",
+          "sourceRow": 21
+        }
+      ]
+    },
+    {
+      "id": "T06-M",
+      "app": "messenger",
+      "number": 6,
+      "background": "You belong to the Walking Group chat. Elena, the walk organizer, has shared Saturday’s Riverside Walk plan and map there. You starred the map earlier so you could return to it. Your neighbor Adam plans to join you, but he is not in the group. You have a private chat with him.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find the Riverside Walk map you saved earlier.",
+          "demands": "Open Starred Messages and locate the Riverside Walk map. Open its original group message.",
+          "setup": "Start at the conversation list. A starred message in Walking Group contains “Riverside Walk map,” with a route from the boathouse to the stone bridge and a café stop at 11 a.m. Other starred items are present.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "The saved Riverside Walk map and its original discussion are displayed.",
+          "sourceRow": 22
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "Read Elena’s weather update. Which part of Saturday’s plan is still happening?",
+          "demands": "Read the update associated with the walk map. Distinguish the canceled activity from the remaining plan.",
+          "setup": "Elena’s update says: “Rain is expected. We’re canceling the walk, but we’ll still meet at River Café at 11 a.m.” It appears after the map in messaging and in the post’s comments in social media.",
+          "outcome": "The café meeting at 11 a.m. is still happening; the walk is canceled.",
+          "sourceRow": 23
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "React to Elena’s update with a thumbs-up to show that you have seen the change.",
+          "demands": "Apply a thumbs-up reaction to Elena’s update message.",
+          "setup": "The update has no participant reaction. A thumbs-up reaction is available on the message in messaging; Like is available on the comment in social media.",
+          "outcome": "The participant’s thumbs-up/Like is attached to Elena’s weather update, not to the old map.",
+          "sourceRow": 24
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Send Adam a location pin for the place you will still meet, and tell him the time.",
+          "demands": "Open Adam’s private chat. Use the location attachment picker to find and send a pin for the identified meeting place. Add the meeting time.",
+          "setup": "The location picker can search fictional places, including River Café at 18 River Road and the boathouse. Location permission is preconfigured. Use study location data, not the participant’s real location. No pin has been sent to Adam.",
+          "outcome": "Adam receives a River Café location pin at 18 River Road and the 11 a.m. meeting time.",
+          "sourceRow": 25
+        }
+      ]
+    },
+    {
+      "id": "T07-M",
+      "app": "messenger",
+      "number": 7,
+      "background": "Priya coordinates a small volunteer team. In your private conversation, she asked you to create a group chat for the team and sent its schedule. Luis and Ravi are volunteers whose contacts are saved on the study phone. No team group exists yet.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find Priya’s request about the volunteer group.",
+          "demands": "Open Priya’s private conversation and locate the request and attached schedule.",
+          "setup": "Start at the conversation list. Priya’s chat contains: “Please create a group called Saturday Helpers. Add me and Luis first. I am still checking whether Ravi can join.” Attached: “Saturday helpers schedule.pdf.” Priya, Luis and Ravi are saved contacts.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "Priya’s group request and schedule are displayed.",
+          "sourceRow": 26
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "Who should be in the group initially, and who is not confirmed yet?",
+          "demands": "Distinguish confirmed members from the person awaiting confirmation.",
+          "setup": "The request remains accessible. No group has been created and no membership confirmation has arrived.",
+          "outcome": "Initially the participant, Priya and Luis. Ravi is not yet confirmed.",
+          "sourceRow": 27
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Create the group Priya requested, using that name and the confirmed members.",
+          "demands": "Create a new group named Saturday Helpers. Select Priya and Luis. Verify initial membership.",
+          "setup": "Participant becomes administrator of the new group. Contacts permit addition. After correct group creation, Priya sends in the new group: “Ravi has confirmed. Please add Ravi and send the schedule here so everyone has it.” Do not deliver before creation.",
+          "outcome": "Saturday Helpers is created with the participant, Priya and Luis; Ravi is initially excluded. Priya’s scripted update then arrives.",
+          "sourceRow": 28
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Follow Priya’s update: add the newly confirmed volunteer, then share the schedule with the group.",
+          "demands": "Read the new update. Add Ravi using group membership controls. Return to Priya’s private chat and forward the schedule into Saturday Helpers.",
+          "setup": "The participant retains admin permission. Ravi permits direct addition. The original schedule is in Priya’s private chat, not preloaded in the new group.",
+          "outcome": "Ravi is added to the existing Saturday Helpers group; its four members receive the schedule there. No duplicate group is created.",
+          "sourceRow": 29
+        }
+      ]
+    },
+    {
+      "id": "T08-M",
+      "app": "messenger",
+      "number": 8,
+      "background": "An unknown account has repeatedly sent you advertising messages in this app. You did not ask for them and want them to stop. Your neighbor Sam helps residents deal with unwanted messages and has asked you to show him an example. You have a private chat with Sam.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find the conversation with the repeated advertising messages.",
+          "demands": "Open the unknown-sender conversation and inspect the recent messages.",
+          "setup": "Start at the conversation list. “Daily Deals” is an unsaved sender with three repeated messages: “Pay a membership fee today to receive our deals.” Other ordinary chats exist. Sam’s chat says: “If unwanted messages keep coming, send me a screenshot of an example.” No clickable payment link is needed.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "The Daily Deals conversation is displayed.",
+          "sourceRow": 30
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "What is this sender asking you to do? Is this an offer you requested?",
+          "demands": "Read the messages and relate them to the background.",
+          "setup": "Keep repeated messages visible. Do not require participants to diagnose fraud; the background explicitly says the messages are unsolicited.",
+          "outcome": "The sender wants a membership payment. The participant did not request these messages.",
+          "sourceRow": 31
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Block this sender so they cannot keep contacting you.",
+          "demands": "Open the sender/chat controls. Block the account and confirm.",
+          "setup": "Blocking is available for this unsaved account. Keep the existing conversation readable after blocking. No additional messages arrive from the blocked account. Reporting or deleting the chat is not required.",
+          "outcome": "Daily Deals is blocked. Other contacts remain unblocked.",
+          "sourceRow": 32
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Take a screenshot showing an example of the unwanted message, and send it privately to Sam.",
+          "demands": "Capture the message using the study phone’s screenshot function. Locate the new screenshot in the gallery and send it to Sam.",
+          "setup": "The device screenshot function must work and save to Gallery. This is a device-level action, not an invented messaging-app feature. Blocked-chat history remains visible. Use only fictional content. No screenshot is preloaded.",
+          "outcome": "Sam receives a newly captured screenshot showing the unwanted message and sender. The block remains in effect.",
+          "sourceRow": 33
+        }
+      ]
+    },
+    {
+      "id": "T09-M",
+      "app": "messenger",
+      "number": 9,
+      "background": "You belong to the Garden Club group chat, where members arrange to borrow gardening tools. You want to borrow some for a balcony project. The group has information about borrowing and who organizes it. Your neighbor Sam is also interested, but he is not in the group. You have a private chat with him.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find Garden Club’s instructions for borrowing tools.",
+          "demands": "Open Garden Club. Check the group information or highlighted content. Locate the organizer’s borrowing instructions.",
+          "setup": "Start at the conversation list. Garden Club’s description names Rosa as the organizer and points to her pinned tool-borrowing message. The message says: “Collect tools from 9–10 a.m. on your chosen day. Return them by 4 p.m. Reserve your collection days in the poll.” Other gardening messages are present.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "Rosa’s tool-borrowing instructions are displayed.",
+          "sourceRow": 34
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "You can come at 9 a.m. on Tuesday and Thursday, but not until noon on Saturday. On which days could you collect tools?",
+          "demands": "Compare the collection window with the stated availability. Identify all compatible days.",
+          "setup": "Keep Rosa’s instructions accessible. The collection window is 9–10 a.m. on each available day; no special Saturday exception is present.",
+          "outcome": "Tuesday and Thursday. Saturday noon is outside the collection window.",
+          "sourceRow": 35
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Use the poll to reserve all the days that fit your availability.",
+          "demands": "Open the borrowing poll. Select both compatible days and leave the incompatible one unselected.",
+          "setup": "The group poll offers Tuesday, Thursday and Saturday. Multiple selections are allowed. No participant vote is preloaded. It is a group-chat poll in messaging and a group-feed poll in social media.",
+          "outcome": "Tuesday and Thursday are selected; Saturday is not.",
+          "sourceRow": 36
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Send Sam the organizer’s contact details so he can ask about borrowing tools. Tell him which days you reserved.",
+          "demands": "Share Rosa’s organizer contact card with Sam privately. Add the two days selected.",
+          "setup": "Rosa’s pinned message includes her shareable organizer contact card. Sam’s private chat exists. The card is labeled for borrowing enquiries. A different member’s card is a distractor.",
+          "outcome": "Sam receives Rosa’s correct contact/profile and a note naming Tuesday and Thursday.",
+          "sourceRow": 37
+        }
+      ]
+    },
+    {
+      "id": "T10-M",
+      "app": "messenger",
+      "number": 10,
+      "background": "Nora organizes a sewing workshop that you plan to attend. She sent the invitation and a voice message in your private chat. You later archived that chat, so it is no longer in your main conversation list. Your neighbors Susan and Sam may want to join; you have separate private chats with them.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find Nora’s workshop invitation in your archived messages.",
+          "demands": "Locate Nora’s archived private conversation. Find and open the workshop invitation.",
+          "setup": "Start at the conversation list. Nora’s private chat is archived, not deleted. It contains a flyer: “Sewing workshop. November 22, 10 a.m.–noon. Town Hall. Guests welcome.” Ordinary conversation follows. Other archived chats are present.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "Nora’s November 22 sewing-workshop invitation is displayed.",
+          "sourceRow": 38
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "Listen to Nora’s voice message. What should you bring, and what will she provide?",
+          "demands": "Find and play the audio after the invitation. Replay if needed. Distinguish the participant’s supplies from Nora’s.",
+          "setup": "Nora’s voice message after the invitation says: “Bring your scissors and a pencil. I’ll provide the fabric and thread, so you don’t need to buy those.” Audio playback, pause and replay work, with audible device volume.",
+          "outcome": "Bring scissors and a pencil. Nora provides fabric and thread.",
+          "sourceRow": 39
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Send Nora a voice message confirming what you will bring.",
+          "demands": "Record a short voice message naming the required supplies. Review or rerecord if desired. Send it to Nora.",
+          "setup": "Nora’s following text says: “Please let me know what you’re bringing.” Voice recording is available and microphone access is granted. No participant confirmation is preloaded.",
+          "outcome": "Nora receives a playable voice message confirming scissors and a pencil.",
+          "sourceRow": 40
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Send the invitation separately to Susan and Sam. Tell each of them what to bring.",
+          "demands": "Send the found invitation to each neighbor in a separate private conversation. Add the supplies identified from the audio.",
+          "setup": "Susan and Sam have separate private chats. The invitation says guests are welcome. In messaging, the flyer can be forwarded; in social media, the public invitation post can be sent privately and opened by both recipients.",
+          "outcome": "Susan and Sam each receive the invitation and a note to bring scissors and a pencil. No new group chat is created.",
+          "sourceRow": 41
+        }
+      ]
+    },
+    {
+      "id": "T11-M",
+      "app": "messenger",
+      "number": 11,
+      "background": "You belong to the Community Volunteers group chat. You previously sent the team a draft schedule by mistake. Priya, the coordinator, then sent you the final schedule privately. Both documents are still on the study phone. You need to correct what the group received.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find the schedule you sent to Community Volunteers.",
+          "demands": "Open the group and locate the participant’s earlier document message. Open the document.",
+          "setup": "Start at the conversation list. Alex’s earlier group message attaches “Volunteer schedule DRAFT.pdf,” showing setup at 9 a.m. Priya’s private chat contains “Volunteer schedule FINAL.pdf,” showing setup at 10 a.m. Both versions are in Files.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "The participant’s earlier draft attachment is displayed.",
+          "sourceRow": 42
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "Compare it with Priya’s final schedule. What needs correcting?",
+          "demands": "Open the final schedule in Priya’s chat. Compare version labels and setup times.",
+          "setup": "The two documents use clear DRAFT and FINAL labels. No other schedule changes are introduced.",
+          "outcome": "The group received the draft with 9 a.m.; the final schedule says 10 a.m.",
+          "sourceRow": 43
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Remove the mistaken schedule message for everyone in the group.",
+          "demands": "Return to the participant’s draft message. Choose Delete for everyone and confirm.",
+          "setup": "The sandbox permits deleting this sent message for everyone without a time limit. Retain a deletion placeholder. Deleting only for the participant does not satisfy the task. The final document is unaffected.",
+          "outcome": "The draft attachment is removed for all group members, not merely hidden on the participant’s device.",
+          "sourceRow": 44
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Send the final schedule to the group and explain the corrected setup time.",
+          "demands": "Attach Volunteer schedule FINAL.pdf from Files or forward Priya’s document. Add the corrected time.",
+          "setup": "Continue in the same group. Final PDF remains available in Files and Priya’s chat. Do not preload the replacement message.",
+          "outcome": "Community Volunteers receives the final PDF and a note that setup is at 10 a.m. The draft remains deleted.",
+          "sourceRow": 45
+        }
+      ]
+    },
+    {
+      "id": "T12-M",
+      "app": "messenger",
+      "number": 12,
+      "background": "You are helping set up a meeting room at the local community center. You belong to the Community Setup group chat with the other volunteers. Anna, the center’s coordinator, has shared chair-layout photos there, and the group has been discussing which layout to use.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find Anna’s photo showing blue chairs in rows with a wide aisle down the middle.",
+          "demands": "Open Community Setup. Browse the layout photos and identify the one matching the visual description.",
+          "setup": "Start at the conversation list. Community Setup contains six separate layout photos from Anna, including blue chairs in rows with a wide central aisle. Other photos show circles, tables or narrow aisles. Use neutral filenames rather than descriptive captions that reveal the target.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "The blue-chair layout with a wide central aisle is displayed.",
+          "sourceRow": 46
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "Read the discussion about this layout. Which room does Anna want it used in?",
+          "demands": "Read the question linked to the selected photo. Resolve Anna’s reference using the order of the two rooms named.",
+          "setup": "Lee replies to the target photo: “Is this for the side room or the main hall?” Anna replies: “The second one. Please keep that wide aisle clear.”",
+          "outcome": "The main hall.",
+          "sourceRow": 47
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "You accidentally reacted sadly to Anna’s reply. Change your reaction to a heart.",
+          "demands": "Find the existing sad reaction on Anna’s reply. Replace it with a heart.",
+          "setup": "Preload one participant sad reaction on Anna’s room-selection reply, representing an earlier mistake. Reaction changes are enabled. Do not preload a second participant reaction.",
+          "outcome": "The sad reaction is replaced with a heart/Love on Anna’s reply.",
+          "sourceRow": 48
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Your phone has photos of the empty rooms. Share the photo of the room Anna chose with Community Setup, and say you will arrange it like her example.",
+          "demands": "Open the device photo picker. Select the correct empty-room photo. Send/post it to Community Setup with a short note about the layout.",
+          "setup": "The device gallery contains labeled photos “Main hall,” “Side room” and “Storage room.” The main-hall image shows an empty room. Image attachment and caption entry are available in the same Community Setup chat.",
+          "outcome": "Community Setup receives the main-hall photo and a note about arranging the blue chairs in rows with the wide aisle clear.",
+          "sourceRow": 49
+        }
+      ]
+    },
+    {
+      "id": "T13-M",
+      "app": "messenger",
+      "number": 13,
+      "background": "Elena organizes neighborhood walks and is a saved contact. She uses this app’s Status updates for last-minute changes. You belong to the Walking Group chat and have a private chat with Elena. She has posted a new status about today’s walk.",
+      "steps": [
+        {
+          "n": 1,
+          "intent": "Find",
+          "goal": "Find Elena’s new status about today’s walk.",
+          "demands": "Open Status/Updates. Locate Elena and view the relevant update.",
+          "setup": "Start at the conversation list. Elena has an active status image: “Too wet for the park today. We’ll meet indoors instead, same time, 11 a.m.” A second status says: “River Café, 18 River Road.” Other contacts have unrelated statuses. All remain active during the session.\n\nThe study account is Alex. Show relevant roles in profiles/group information. Use the shared baseline dataset for this app.",
+          "outcome": "Elena’s walk-status update is displayed.",
+          "sourceRow": 50
+        },
+        {
+          "n": 2,
+          "intent": "Understand",
+          "goal": "What has changed, and what has stayed the same?",
+          "demands": "Read both related status items and distinguish location/activity from time.",
+          "setup": "Both status items can be replayed. Do not let them expire during the task.",
+          "outcome": "The park walk is replaced by an indoor meeting at River Café. The time remains 11 a.m.",
+          "sourceRow": 51
+        },
+        {
+          "n": 3,
+          "intent": "Reply",
+          "goal": "Reply privately to Elena’s status to say you will join the new plan.",
+          "demands": "Use the status reply field and send a message confirming the café plan.",
+          "setup": "Status replies open/use Elena’s private conversation. After the appropriate reply, Elena sends a fixed-location card for River Café, 18 River Road, with: “Please pass this to Walking Group so everyone can find us.”",
+          "outcome": "Elena receives a private reply linked to her status confirming the café plan. Her location card arrives afterward.",
+          "sourceRow": 52
+        },
+        {
+          "n": 4,
+          "intent": "Share",
+          "goal": "Forward the location Elena just sent to Walking Group, and include the meeting time.",
+          "demands": "Select the newly received location card. Forward it to Walking Group and add 11 a.m.",
+          "setup": "The group already exists but has not received the new café location card. Preserve the status reply and Elena’s response.",
+          "outcome": "Walking Group receives the café location card and 11 a.m. meeting time.",
+          "sourceRow": 53
+        }
+      ]
+    }
+  ]
+}

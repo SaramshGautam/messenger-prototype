@@ -1,0 +1,48 @@
+/* App shell: instruction strip on top, the app (social or messenger) below. */
+.app-shell { display: flex; flex-direction: column; height: 100dvh; min-height: 0; padding-bottom: 0; overflow: hidden; }
+.app-body { position: relative; flex: 1; min-height: 0; }
+@media (min-width: 700px) { .app-shell { height: calc(100dvh - 48px); min-height: 0; } }
+
+/* Task strip (instruction banner) */
+.task-strip { flex: 0 0 auto; background: #20364d; color: #fff; padding: calc(6px + env(safe-area-inset-top)) 12px 8px; font-size: 15px; line-height: 1.4; z-index: 5; }
+.task-strip-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.task-strip button { border: 0; background: transparent; color: #fff; padding: 0; }
+.task-strip-toggle { display: flex; align-items: center; gap: 5px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; opacity: .9; }
+.task-strip-nav { display: flex; align-items: center; gap: 2px; }
+.task-strip-nav button { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; opacity: .55; }
+.task-strip-nav button:disabled { opacity: .2; }
+.task-strip-dots { display: flex !important; gap: 4px; width: auto !important; padding: 0 4px !important; opacity: 1 !important; }
+.task-strip-dots i { width: 7px; height: 7px; border-radius: 50%; background: #ffffff44; }
+.task-strip-dots i.done { background: #ffffffaa; }
+.task-strip-dots i.on { background: #f7c948; }
+.task-strip-goal { margin: 4px 0 2px; font-size: 17px; font-weight: 700; }
+.task-strip-bg { margin: 4px 0 6px; font-size: 14px; opacity: .88; max-height: 7.2em; overflow-y: auto; }
+.task-strip-more { font-size: 12px !important; text-decoration: underline; opacity: .7; }
+
+/* Researcher task menu */
+.task-overlay { position: absolute; inset: 0; z-index: 90; background: #f4f6f8; overflow-y: auto; padding: 16px; color: #1f2933; }
+.task-overlay-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+.task-overlay-head h2 { margin: 0; }
+.task-overlay-head span { color: #667788; font-size: 12px; }
+.task-tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
+.task-current { background: #fff; border: 2px solid #41658a; border-radius: 14px; padding: 12px; margin-bottom: 14px; }
+.task-triggers { display: grid; gap: 6px; }
+.task-triggers small { color: #667788; }
+.task-list { display: grid; gap: 10px; }
+.task-card { display: block; border: 1px solid #dbe1e6; background: #fff; border-radius: 14px; padding: 0; color: #495966; }
+.task-card.selected { border-color: #41658a; box-shadow: 0 0 0 2px #41658a20; }
+.task-card-main { width: 100%; display: grid; grid-template-columns: auto 1fr; gap: 11px; text-align: left; border: 0; background: transparent; padding: 13px; color: inherit; }
+.task-card-main svg { color: #41658a; }
+.task-card-main span { display: grid; gap: 4px; }
+.task-card-main em { font-style: normal; font-size: 12px; font-weight: 700; color: #41658a; }
+.task-card-main strong { color: #1f2933; }
+.task-card-body { padding: 0 14px 12px; font-size: 13.5px; }
+.task-card-body ol { padding-left: 18px; display: grid; gap: 8px; }
+.task-card-body li small { display: block; color: #667788; margin-top: 2px; }
+.task-bg { background: #f4f6f8; border-radius: 10px; padding: 8px 10px; }
+.segmented { display: flex; background: #e1e6eb; border-radius: 10px; padding: 3px; }
+.segmented button { border: 0; background: transparent; padding: 7px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.segmented button.active { background: #fff; box-shadow: 0 1px 3px #0002; }
+.secondary-button, .primary-button { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #c9d2da; background: #fff; border-radius: 9px; padding: 7px 11px; font-size: 13px; font-weight: 600; color: #20364d; }
+.secondary-button:disabled { opacity: .4; }
+.primary-button { background: #20364d; color: #fff; border-color: #20364d; }
