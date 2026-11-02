@@ -21,10 +21,10 @@ export function ContactInfo({ route }) {
         <button onClick={() => { log("call_button", { type: "video", personId: c.id, via: "info" }); startCall(c.id, "video"); }}><Video size={22} /><span>Video</span></button>
       </div>
       {c.about && <div className="wa-card-block"><small>About</small><p>{c.about}</p></div>}
-      <div className="wa-card-block">
-        <small>Media, links and docs · {media.length}</small>
-        <div className="wa-media-row">{media.slice(0, 4).map((m) => <img key={m.id} src={m.image.src} alt={m.image.alt} />)}</div>
-      </div>
+      {conv && <button className="wa-card-block wa-media-link" onClick={() => { log("shared_media_opened", { convId: conv.id }); nav.push({ name: "media", convId: conv.id }); }} aria-label={`Media, links and docs, ${media.length} items`}>
+        <span className="wa-media-link-top"><small>Media, links and docs</small><small>{media.length} <ChevronRight size={14} /></small></span>
+        <span className="wa-media-row">{media.slice(-4).reverse().map((m) => <img key={m.id} src={m.image.src} alt={m.image.alt} />)}</span>
+      </button>}
       {groups.length > 0 && (
         <div className="wa-card-block"><small>{groups.length} group{groups.length > 1 ? "s" : ""} in common</small>
           {groups.map((g) => <button key={g.id} className="wa-conv" onClick={() => nav.push({ name: "chat", convId: g.id })}><ConvAvatar conv={g} size="sm" /><span className="wa-conv-copy"><strong>{g.title}</strong></span></button>)}
@@ -71,10 +71,10 @@ export function GroupInfo({ route }) {
         <small>Description</small>
         <p>{g.description || (admin ? "Add group description" : "No description")}</p>
       </div>
-      <div className="wa-card-block">
-        <small>Media, links and docs · {media.length}</small>
-        <div className="wa-media-row">{media.slice(0, 4).map((m) => <img key={m.id} src={m.image.src} alt={m.image.alt} />)}</div>
-      </div>
+      <button className="wa-card-block wa-media-link" onClick={() => { log("shared_media_opened", { convId: g.id }); nav.push({ name: "media", convId: g.id }); }} aria-label={`Media, links and docs, ${media.length} items`}>
+        <span className="wa-media-link-top"><small>Media, links and docs</small><small>{media.length} <ChevronRight size={14} /></small></span>
+        <span className="wa-media-row">{media.slice(-4).reverse().map((m) => <img key={m.id} src={m.image.src} alt={m.image.alt} />)}</span>
+      </button>
       <div className="wa-card-block">
         <small>{g.members.length} members</small>
         {admin && (
@@ -195,6 +195,70 @@ export function PhotoViewer({ photos, index, onClose }) {
           <button className="prev" onClick={(e) => { e.stopPropagation(); setI((i - 1 + photos.length) % photos.length); }} aria-label="Previous"><ChevronLeft /></button>
           <button className="next" onClick={(e) => { e.stopPropagation(); setI((i + 1) % photos.length); }} aria-label="Next"><ChevronRight /></button>
         </>}
+      </div>
+    </div>
+  );
+}
+
+// ---------- Message info (your own messages): who received and read it ----------
+export function MessageInfo({ route }) {
+  const { world, openViewer } = useM();
+  const conv = world.conversations[route.convId];
+  const m = conv?.messages.find((x) => x.id === route.msgId);
+  if (!m) return null;
+  const isGroup = conv.kind === "group";
+  const read = m.receipts?.read ?? [];
+  const delivered = m.receipts?.delivered ?? [];
+  const Row = ({ id, time }) => (
+    <div className="wa-conv static"><PersonAvatar id={id} /><span className="wa-conv-copy"><strong>{contact(world, id).name}</strong><small>{time}</small></span></div>
+  );
+  return (
+    <div className="wa-page wa-info">
+      <Header title="Message info" />
+      <div className="wa-msginfo-preview">
+        <div className="wa-bubble mine">
+          {m.image && <img src={m.image.src} alt={m.image.alt} onClick={() => openViewer([m.image], 0, { convId: conv.id, msgId: m.id })} />}
+          {m.text && <span className="wa-text">{m.text}</span>}
+          <span className="wa-meta"><time>{m.day === "Today" ? "" : `${m.day}, `}{m.time}</time></span>
+        </div>
+      </div>
+      {isGroup ? (
+        <>
+          <div className="wa-card-block">
+            <small className="wa-receipt-head"><span className="wa-ticks">✓✓</span> Read by</small>
+            {read.length ? read.map(([id, t]) => <Row key={id} id={id} time={`Today, ${t}`} />) : <p className="wa-note">Nobody yet</p>}
+          </div>
+          <div className="wa-card-block">
+            <small className="wa-receipt-head"><span className="wa-ticks delivered">✓✓</span> Delivered to</small>
+            {delivered.length ? delivered.map(([id, t]) => <Row key={id} id={id} time={`Today, ${t}`} />) : <p className="wa-note">Nobody yet</p>}
+          </div>
+        </>
+      ) : (
+        <div className="wa-card-block">
+          <div className="wa-receipt-row"><span className="wa-ticks">✓✓</span><span><strong>Read</strong><small>{m.status === "read" || !m.status ? (m.readAt ?? `${m.day}, ${m.time}`) : "—"}</small></span></div>
+          <div className="wa-receipt-row"><span className="wa-ticks delivered">✓✓</span><span><strong>Delivered</strong><small>{m.status === "sent" ? "—" : (m.deliveredAt ?? `${m.day}, ${m.time}`)}</small></span></div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ---------- Shared media of a chat or group ----------
+export function MediaPage({ route }) {
+  const { world, openViewer, log } = useM();
+  const conv = world.conversations[route.convId];
+  const media = conv.messages.filter((m) => m.image && !m.deletedForEveryone && !m.deletedForMe).reverse();
+  const photos = media.map((m) => ({ ...m.image, msgId: m.id }));
+  return (
+    <div className="wa-page">
+      <Header title="Media, links and docs" sub={convTitle(world, conv)} />
+      <div className="wa-media-grid">
+        {media.map((m, i) => (
+          <button key={m.id} onClick={() => { log("shared_media_photo_opened", { convId: conv.id, msgId: m.id, name: m.image.name }); openViewer(photos, i, { convId: conv.id, msgId: m.id, via: "shared_media" }); }} aria-label={`Photo ${m.image.name ?? ""}, ${m.day}`}>
+            <img src={m.image.src} alt={m.image.alt} />
+          </button>
+        ))}
+        {!media.length && <p className="wa-note">No media</p>}
       </div>
     </div>
   );

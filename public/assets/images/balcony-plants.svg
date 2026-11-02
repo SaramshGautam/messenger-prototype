@@ -1,0 +1,12 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600' width='800' height='600'><rect width='800' height='600' fill='#dbe9f2'/>
+  <rect y='0' width='800' height='600' fill='#dbe9f2'/>
+  <g stroke='#9aa7b2' stroke-width='10'><path d='M0 360 H800'/><path d='M40 360 V600'/><path d='M130 360 V600'/><path d='M220 360 V600'/><path d='M310 360 V600'/><path d='M400 360 V600'/><path d='M490 360 V600'/><path d='M580 360 V600'/><path d='M670 360 V600'/><path d='M760 360 V600'/></g>
+  <rect y='520' width='800' height='80' fill='#c4b49c'/>
+  <path d='M150 400 L350 400 L325 540 L175 540 Z' fill='#2f6fd6' stroke='#1d4fa3' stroke-width='6'/>
+  <g fill='#7fae4d'><ellipse cx='200' cy='380' rx='40' ry='16' transform='rotate(35 200 380)'/><ellipse cx='300' cy='380' rx='40' ry='16' transform='rotate(-35 300 380)'/>
+  <ellipse cx='245' cy='350' rx='16' ry='40' transform='rotate(10 245 350)'/></g>
+  <path d='M250 400 V330' stroke='#6b8f3a' stroke-width='6'/>
+  <rect x='205' y='450' width='90' height='36' rx='6' fill='#fff'/><text x='250' y='477' font-family='Inter, Segoe UI, Helvetica, Arial, sans-serif' font-size='24' font-weight='800' fill='#1d4fa3' text-anchor='middle' >BASIL</text>
+  <path d='M450 400 L650 400 L625 540 L475 540 Z' fill='#f7f7f5' stroke='#c9c9c4' stroke-width='6'/>
+  <g fill='#3fa34d'><ellipse cx='480' cy='330' rx='18' ry='26'/><ellipse cx='508' cy='348' rx='18' ry='26'/><ellipse cx='536' cy='366' rx='18' ry='26'/><ellipse cx='564' cy='330' rx='18' ry='26'/><ellipse cx='592' cy='348' rx='18' ry='26'/><ellipse cx='620' cy='366' rx='18' ry='26'/><ellipse cx='648' cy='330' rx='18' ry='26'/></g>
+  <rect x='505' y='450' width='90' height='36' rx='6' fill='#eaf5ea' stroke='#3fa34d' stroke-width='3'/><text x='550' y='477' font-family='Inter, Segoe UI, Helvetica, Arial, sans-serif' font-size='24' font-weight='800' fill='#25732f' text-anchor='middle' >MINT</text></svg>

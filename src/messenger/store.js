@@ -31,6 +31,8 @@ export function createWorld(setup) {
     places: base.places,
     gallery: base.gallery,
     statuses: base.statuses,
+    myStatus: base.myStatus,
+    statusViewers: base.statusViewers,
     calls: base.calls,
     conversations: Object.fromEntries(base.conversations.map((c) => [c.id, c])),
   });
@@ -38,7 +40,7 @@ export function createWorld(setup) {
   w.convOrder = Object.values(w.conversations)
     .sort((a, b) => dayKey(last(b)?.day, last(b)?.time) - dayKey(last(a)?.day, last(a)?.time))
     .map((c) => c.id);
-  w.unread = { g_oak: 1, dm_priya: 2, dm_deals: 3, g_walk: 2, g_setup: 0 };
+  w.unread = { dm_nora: 1, g_notices: 3, g_garden: 2, dm_grace: 1, dm_promo: 3, g_market: 4, dm_ben: 1 };
   setup?.(w);
   return w;
 }
@@ -58,7 +60,7 @@ export function msgSummary(w, m) {
   if (m.call) return `${m.call.type === "video" ? "Video" : "Voice"} call`;
   if (m.poll) return `📊 ${m.poll.question}`;
   if (m.audio) return "🎤 Voice message";
-  if (m.location) return `📍 ${w.places[m.location.placeId]?.name ?? "Location"}`;
+  if (m.location) return m.location.live ? "📍 Live location" : `📍 ${w.places[m.location.placeId]?.name ?? "Location"}`;
   if (m.contact) return m.text ? m.text : `👤 ${contact(w, m.contact.personId).name}`;
   if (m.doc) return m.text ? `📄 ${m.text}` : `📄 ${w.documents[m.doc]?.name}`;
   if (m.image) return m.text ? `📷 ${m.text}` : "📷 Photo";
@@ -143,6 +145,8 @@ export function reducer(w, a) {
       return next;
     }
     case "statusViewed": { const s = next.statuses.find((x) => x.author === a.author); if (s) s.viewed = true; return next; }
+    case "addStatus": { next.myStatus.push({ id: a.id, kind: "image", src: a.src, alt: a.alt, galleryId: a.galleryId, time: clock(now), viewers: [] }); return next; }
+    case "deleteStatus": { next.myStatus = next.myStatus.filter((x) => x.id !== a.id); return next; }
     case "addGallery": { next.gallery.unshift(a.item); return next; }
     default: return w;
   }

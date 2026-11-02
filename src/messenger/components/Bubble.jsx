@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { FileText, MapPin, Phone, Video, PhoneMissed, Star, Play, Pause, CornerUpLeft, Forward, Ban, CheckCheck, Pencil } from "lucide-react";
+import { FileText, MapPin, Phone, Video, PhoneMissed, Star, Play, Pause, CornerUpLeft, Forward, Ban, CheckCheck, Check, Pencil } from "lucide-react";
 import { useM, PersonAvatar, useLongPress, fmtDuration } from "../ui.jsx";
 import { contact, msgSummary, ME, findDM } from "../store.js";
 
@@ -143,7 +143,7 @@ export default function Bubble({ conv, m, selected, selecting, onSelect, onJump,
         {place && (
           <button className="wa-loc" onClick={(e) => { e.stopPropagation(); log("location_opened", { convId: conv.id, msgId: m.id, placeId: place.id }); nav.push({ name: "map", placeId: place.id }); }}>
             <img src={place.image} alt="" />
-            <span><MapPin size={16} /> <strong>{place.name}</strong><small>{place.address}</small></span>
+            <span><MapPin size={16} /> <strong>{m.location.live ? "Live location" : place.name}</strong><small>{m.location.live ? `Sharing for ${m.location.live}` : m.location.current ? `Current location · ${place.address}` : place.address}</small></span>
           </button>
         )}
         {m.audio && <AudioPlayer audio={{ ...m.audio, from: m.from }} msgId={m.id} mine={mine} />}
@@ -168,7 +168,9 @@ export default function Bubble({ conv, m, selected, selecting, onSelect, onJump,
           {m.starred && <Star size={11} fill="currentColor" aria-label="Starred" />}
           {m.edited && <span className="wa-edited"><Pencil size={10} /> Edited</span>}
           <time>{m.time}</time>
-          {mine && !m.deletedForEveryone && <CheckCheck size={15} className="wa-ticks" aria-label="Read" />}
+          {mine && !m.deletedForEveryone && !m.call && (m.status === "sent"
+            ? <Check size={15} className="wa-ticks sent" aria-label="Sent" />
+            : <CheckCheck size={15} className={m.status === "delivered" ? "wa-ticks delivered" : "wa-ticks"} aria-label={m.status === "delivered" ? "Delivered" : "Read"} />)}
         </span>
       </div>
       {reacts.length > 0 && (

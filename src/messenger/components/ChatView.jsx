@@ -309,7 +309,7 @@ export function ChatView({ route }) {
         <Sheet onClose={() => setMoreMenu(false)}>
           <SheetItem icon={single.pinned ? PinOff : Pin} label={single.pinned ? "Unpin" : "Pin"} onClick={() => doAction("pin")} />
           {canEdit && <SheetItem icon={Pencil} label="Edit" onClick={() => doAction("edit")} />}
-          <SheetItem icon={Info} label="Info" sub={`Sent ${single.day}, ${single.time}`} onClick={() => setMoreMenu(false)} />
+          {single.from === ME && !single.call && <SheetItem icon={Info} label="Info" sub="See who received and read it" onClick={() => { setMoreMenu(false); log("message_info_opened", { convId: conv.id, msgId: single.id }); clearSel(); nav.push({ name: "msgInfo", convId: conv.id, msgId: single.id }); }} />}
         </Sheet>
       )}
       {confirm === "delete" && (

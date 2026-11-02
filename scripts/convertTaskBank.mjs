@@ -1,10 +1,11 @@
-// Converts the Messenger App sheet of the task bank (exported as task-bank/messenger.csv)
+// Converts the messenger task bank (task bank v3, task-bank/messenger.csv)
 // into src/data/scenarios.json.
 //
 //   npm run convert:tasks
 //
 // Each scenario is 4 rows: the first row has the Task ID and background (Find),
-// followed by Understand, Reply and Share rows with an empty Task ID.
+// followed by three rows with an empty Task ID. "Scenario" is the text shown to
+// participants; "Task Goal" is the researcher-facing objective.
 import fs from "node:fs";
 import Papa from "papaparse";
 
@@ -20,22 +21,24 @@ let current = null;
 parsed.data.forEach((row, i) => {
   const rawId = clean(row["task id"]);
   if (rawId) {
-    const num = rawId.match(/T(\d+)/i)?.[1];
+    const num = rawId.match(/T-?(\d+)/i)?.[1];
     if (!num) throw new Error(`${SRC} row ${i + 2}: bad Task ID "${rawId}"`);
     // The sheet labels these "T01-S"…; the messenger tasks are named T01-M…
-    current = { id: `T${num.padStart(2, "0")}-M`, app: "messenger", number: Number(num), background: clean(row["background & scenario"]), steps: [] };
+    current = { id: `T${num.padStart(2, "0")}-M`, app: "messenger", number: Number(num), background: clean(row["background information"] ?? row["background & scenario"]), steps: [] };
     scenarios.push(current);
   }
   if (!current) return;
-  const goal = clean(row["task goal"]);
+  const goal = clean(row["scenario"] ?? row["task goal"]);
   if (!goal) return;
   current.steps.push({
     n: current.steps.length + 1,
     intent: clean(row["intent family"]) || ["Find", "Understand", "Reply", "Share"][current.steps.length],
     goal,
+    objective: row["scenario"] !== undefined ? clean(row["task goal"]) : "",
     demands: clean(row["task demands"]),
     setup: clean(row["sandbox setup and starting the state"]),
     outcome: clean(row["correct outcome"]),
+    notes: clean(row["notes"]),
     sourceRow: i + 2,
   });
 });

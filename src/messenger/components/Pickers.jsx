@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from "react";
-import { FileText, Image as ImageIcon, Camera, MapPin, User, X, Send, Search, Check, ChevronLeft, Navigation, Smartphone } from "lucide-react";
-import { useM, PersonAvatar, ConvAvatar } from "../ui.jsx";
+import { FileText, Image as ImageIcon, Camera, MapPin, User, X, Send, Search, Check, ChevronLeft, Navigation, Smartphone, Radio } from "lucide-react";
+import { useM, PersonAvatar, ConvAvatar, Sheet, SheetItem } from "../ui.jsx";
+import { CURRENT_PLACE } from "../world.js";
 import { contact, convTitle, savedContacts, findDM, msgSummary, uid, ME } from "../store.js";
 
 function Modal({ title, onClose, onBack, children, right }) {
@@ -100,14 +101,20 @@ function DocPicker({ onBack, onSend }) {
 function LocationPicker({ onBack, onSend }) {
   const { world, log } = useM();
   const [q, setQ] = useState("");
+  const [live, setLive] = useState(false);
+  const here = world.places[CURRENT_PLACE];
   const list = Object.values(world.places).filter((p) => `${p.name} ${p.address}`.toLowerCase().includes(q.toLowerCase()));
   return (
     <Modal title="Send location" onBack={onBack}>
-      <div className="wa-map-hero"><img src={world.places.river_park.image} alt="Map" /></div>
+      <div className="wa-map-hero"><img src={here.image} alt="Map showing your current location" /></div>
       <label className="wa-search"><Search size={18} /><input value={q} onChange={(e) => setQ(e.target.value)} onBlur={() => q && log("location_search", { q })} placeholder="Search places" aria-label="Search places" /></label>
-      <button className="wa-conv" onClick={() => onSend([{ location: { placeId: "community_center", current: true } }], "location_sent", { log: { placeId: "community_center", current: true } })}>
+      <button className="wa-conv" onClick={() => { log("live_location_opened", {}); setLive(true); }}>
+        <span className="wa-round-icon green"><Radio size={20} /></span>
+        <span className="wa-conv-copy"><strong>Share live location</strong><small>Updates in real time as you move</small></span>
+      </button>
+      <button className="wa-conv" onClick={() => onSend([{ location: { placeId: here.id, current: true } }], "location_sent", { log: { placeId: here.id, current: true } })}>
         <span className="wa-round-icon green"><Navigation size={20} /></span>
-        <span className="wa-conv-copy"><strong>Send your current location</strong><small>Study location: Community Center</small></span>
+        <span className="wa-conv-copy"><strong>Send your current location</strong><small>Accurate to 10 meters · {here.name}</small></span>
       </button>
       <p className="wa-sub">Nearby places</p>
       {list.map((p) => (
@@ -116,6 +123,14 @@ function LocationPicker({ onBack, onSend }) {
           <span className="wa-conv-copy"><strong>{p.name}</strong><small>{p.address}</small></span>
         </button>
       ))}
+      {live && (
+        <Sheet title="Share live location" onClose={() => { log("live_location_cancelled", {}); setLive(false); }}>
+          <p className="wa-note">Participants in this chat will see your location in real time.</p>
+          {["15 minutes", "1 hour", "8 hours"].map((d) => (
+            <SheetItem key={d} icon={Radio} label={`Share for ${d}`} onClick={() => onSend([{ location: { placeId: here.id, live: d } }], "live_location_sent", { log: { placeId: here.id, duration: d } })} />
+          ))}
+        </Sheet>
+      )}
     </Modal>
   );
 }

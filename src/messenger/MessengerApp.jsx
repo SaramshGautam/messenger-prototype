@@ -6,7 +6,7 @@ import { createWorld, reducer, uid } from "./store.js";
 import { DEFAULT_START, START_STATES, TRIGGERS } from "./scenarios.js";
 import { ChatsList, ArchivedList, StarredList, NewChat, NewGroup, SettingsPage } from "./components/Lists.jsx";
 import { ChatView } from "./components/ChatView.jsx";
-import { ContactInfo, GroupInfo, AddMembers, DocViewer, MapView, PhotoViewer } from "./components/Info.jsx";
+import { ContactInfo, GroupInfo, AddMembers, DocViewer, MapView, PhotoViewer, MessageInfo, MediaPage } from "./components/Info.jsx";
 import { CallsTab, CallScreen } from "./components/Calls.jsx";
 import { UpdatesTab, StatusViewer } from "./components/Status.jsx";
 import { ForwardSheet } from "./components/Pickers.jsx";
@@ -20,7 +20,7 @@ const TABS = [
 const ROOTS = { chats: ChatsList, updates: UpdatesTab, calls: CallsTab, settings: SettingsPage };
 const ROUTES = {
   chat: ChatView, contact: ContactInfo, group: GroupInfo, addMembers: AddMembers, archived: ArchivedList, starred: StarredList,
-  newChat: NewChat, newGroup: NewGroup, doc: DocViewer, map: MapView,
+  newChat: NewChat, newGroup: NewGroup, doc: DocViewer, map: MapView, msgInfo: MessageInfo, media: MediaPage,
 };
 
 export default function MessengerApp({ scenario, step, logEvent, openTasks, fire }) {

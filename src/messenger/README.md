@@ -1,30 +1,27 @@
-# Messenger app (WhatsApp-style, T01-M … T13-M)
+# Messenger app (WhatsApp-style, T01-M … T04-M)
 
 | File | What it holds |
 | --- | --- |
-| `world.js` | Shared baseline: contacts (incl. the unsaved "Daily Deals" number), chats, documents/Files, places, gallery, statuses, call history |
-| `scenarios.js` | Scripted triggers and call scripts (see below) |
-| `store.js` | State updates (send, react, star, pin, delete, edit, vote, create group, add members, block, archive, call log…) |
-| `MessengerApp.jsx` | Shell: tabs (Chats, Updates, Calls, Settings), navigation, trigger engine, overlays |
-| `components/` | `Lists.jsx` (chats, search, archived, starred, new chat/group, settings), `ChatView.jsx`, `Bubble.jsx`, `Pickers.jsx` (attach: Document, Gallery, Location, Contact; Forward), `Info.jsx`, `Calls.jsx`, `Status.jsx` |
+| `world.js` | Shared baseline: contacts (incl. the unsaved +123456789 number), chats and groups, read receipts, gallery, places (current location = Brookside Community Market), statuses |
+| `scenarios.js` | Start screen per scenario and extra state (T04-M: your blurry status is already posted) |
+| `store.js` | State updates (send, react, star, pin, delete, edit, vote, block, archive, add/delete your status…) |
+| `MessengerApp.jsx` | Shell: tabs (Chats, Updates, Calls, Settings), navigation, overlays |
+| `components/` | `Lists.jsx` (chats, filters, search), `ChatView.jsx`, `Bubble.jsx`, `Pickers.jsx` (attach: Document, Gallery, Location incl. live location, Contact; Forward), `Info.jsx` (contact/group info, shared media, message info), `Calls.jsx`, `Status.jsx` |
 
-## Scripted events
+## Scenarios
 
-| Task | Trigger | What happens |
+| Task | Start | Main features |
 | --- | --- | --- |
-| T02-M | Participant calls Omar (voice or video) | Omar answers and says the scripted line (text-to-speech + caption) |
-| T03-M | Researcher moves to step 3 (Reply) | Lena's incoming video call; her script waits for camera off/on and mute/unmute |
-| T07-M | A group named "Saturday Helpers" with Priya is created | Priya posts “Ravi has confirmed…” in that group |
-| T13-M | Participant replies to Elena's status | Elena sends the River Café location and asks to pass it on |
+| T01-M | Chat list | Search contacts (Alex Turner has no chat yet), read ticks + message Info (David), reaction (Nora), send a gallery photo (business card) |
+| T02-M | Oak Court Notices | Group member list (Helen Williams vs Helena Ward), Groups filter, reply to a message, forward to Ben |
+| T03-M | Maple Gardening | Shared media (blue gazebo photo), member list (Jacqueline), post a status from the gallery, reply to Oliver's status |
+| T04-M | Chat list | Your status ⋮ → Delete, message Info with Read by / Delivered to, send current location, block +123456789 |
 
-Each can also be fired from the researcher menu if it did not happen.
+No scripted (delayed) events in this task bank.
 
-## Controls used by the tasks
+## Controls
 
-* **Select a message**: press and hold. Then Reply, Star, Delete (for me / for everyone), Copy, Forward, ⋮ (Pin, Edit). Tap more messages to select several. An emoji row appears for reactions (tap another emoji to change it).
-* **Search**: the search box on Chats searches all chats, including archived ones.
-* **Starred messages / Archived**: ⋮ on Chats, or Settings.
-* **Attach** (paperclip): Document (the phone's Files), Gallery (study photos + "All photos on this phone" for real screenshots), Location (search places), Contact.
-* **Calls**: phone/video buttons in a chat. Calls are simulated; nothing leaves the phone.
-* **Voice messages**: tap the mic, then stop, then send. The recording stays on the phone; only its length is logged.
-* **Status**: Updates tab. Reply box at the bottom sends a private message.
+* **Select a message**: press and hold. Then Reply, Star, Delete, Copy, Forward, ⋮ (Pin, Edit, Info for your own messages). An emoji row appears for reactions.
+* **Ticks**: grey ✓✓ delivered, blue ✓✓ read. ⋮ → Info shows times (private chat) or Read by / Delivered to (group).
+* **Group info**: tap the chat name. Media, links and docs opens all shared photos.
+* **Status**: Updates tab. Camera icon next to My status adds a photo status. Open My status → ⋮ → Delete; the eye button shows who viewed it.
