@@ -7,14 +7,20 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "convert:tasks": "node scripts/convertTaskBank.mjs"
+    "convert:tasks": "node scripts/convertTaskBank.mjs",
+    "logs:export": "node scripts/exportLogs.mjs",
+    "emulators": "firebase emulators:start --project demo-messenger"
   },
   "dependencies": {
     "@vitejs/plugin-react": "6.1.1",
+    "firebase": "13.1.0",
     "lucide-react": "1.47.0",
     "papaparse": "5.7.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "vite": "8.3.0"
+  },
+  "devDependencies": {
+    "firebase-admin": "14.5.0"
   }
 }

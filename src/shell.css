@@ -46,3 +46,24 @@
 .secondary-button, .primary-button { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #c9d2da; background: #fff; border-radius: 9px; padding: 7px 11px; font-size: 13px; font-weight: 600; color: #20364d; }
 .secondary-button:disabled { opacity: .4; }
 .primary-button { background: #20364d; color: #fff; border-color: #20364d; }
+
+/* Study session (participant ID) */
+.session-gate { position: absolute; inset: 0; z-index: 100; background: #20364d; display: grid; place-items: center; padding: 20px; }
+.session-card { width: 100%; max-width: 400px; background: #fff; border-radius: 20px; padding: 26px 22px; display: grid; gap: 14px; color: #1f2933; }
+.session-card h2 { margin: 0; font-size: 22px; }
+.session-card p { margin: 0; color: #556; font-size: 15px; line-height: 1.4; }
+.session-icon { width: 54px; height: 54px; border-radius: 50%; background: #e8eef5; color: #20364d; display: grid; place-items: center; }
+.session-card label { display: grid; gap: 6px; font-weight: 700; font-size: 14px; }
+.session-card input { border: 2px solid #c9d2da; border-radius: 10px; padding: 12px; font-size: 18px; }
+.session-card input:focus { outline: none; border-color: #41658a; }
+.session-card .big { justify-content: center; padding: 13px; font-size: 16px; }
+.session-card .big:disabled { opacity: .45; }
+.session-card .link { border: 0; background: none; color: #41658a; text-decoration: underline; font-size: 14px; }
+.session-card .status { display: flex; gap: 6px; align-items: flex-start; font-size: 12.5px; color: #667788; }
+.session-card .status.ok { color: #2e7d32; }
+.task-session { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #dbe1e6; border-radius: 14px; padding: 12px; margin-bottom: 12px; }
+.task-session > span:first-child { display: grid; }
+.task-session small { color: #667788; font-size: 12px; }
+.log-status { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; font-weight: 700; padding: 5px 10px; border-radius: 14px; background: #eef1f4; color: #667788; }
+.log-status.ok { background: #e6f4ea; color: #2e7d32; }
+.log-status.error { background: #fdecea; color: #c62828; }

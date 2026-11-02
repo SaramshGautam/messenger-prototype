@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { CheckCircle2, Circle, Download, X, RotateCcw, Zap, ChevronLeft, ChevronRight, Compass } from "lucide-react";
+import { CheckCircle2, Circle, Download, X, RotateCcw, Zap, ChevronLeft, ChevronRight, Compass, Cloud, CloudOff, LogOut } from "lucide-react";
 import { researcherTriggers } from "../messenger/scenarios.js";
 
 // Researcher menu. Starting a scenario resets that app to the scenario's
 // TASK START state. Moving between steps keeps the participant's state.
-export default function TaskPanel({ scenarios, scenario, stepIndex, onStart, onStep, onFree, onFire, eventLog, onClose }) {
+export default function TaskPanel({ scenarios, scenario, stepIndex, onStart, onStep, onFree, onFire, eventLog, studySession, remoteStatus, onEndSession, onClose }) {
   const [open, setOpen] = useState(scenario?.id ?? null);
   const shown = scenarios;
   const triggers = scenario ? researcherTriggers(scenario.id) : [];
@@ -14,7 +14,7 @@ export default function TaskPanel({ scenarios, scenario, stepIndex, onStart, onS
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `messenger-events-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
+    a.download = `messenger-events-${studySession?.participantId ?? "no-id"}-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -28,6 +28,20 @@ export default function TaskPanel({ scenarios, scenario, stepIndex, onStart, onS
         </div>
         <button className="icon-button" onClick={onClose} aria-label="Close"><X size={22} /></button>
       </div>
+
+      {studySession && (
+        <div className="task-session">
+          <span><strong>Participant {studySession.participantId}</strong><small>Session {studySession.id}</small></span>
+          <span className={`log-status ${studySession.practice ? "off" : remoteStatus}`}>
+            {studySession.practice ? <><CloudOff size={15} /> Practice: not saved</>
+              : remoteStatus === "ok" ? <><Cloud size={15} /> Saving to cloud</>
+              : remoteStatus === "connecting" ? <><Cloud size={15} /> Connecting…</>
+              : remoteStatus === "error" ? <><CloudOff size={15} /> Cloud error: retrying (keep a local log)</>
+              : <><CloudOff size={15} /> Cloud logging not set up</>}
+          </span>
+          <button className="secondary-button" onClick={onEndSession}><LogOut size={16} />End session</button>
+        </div>
+      )}
 
       {scenario && (
         <div className="task-current">

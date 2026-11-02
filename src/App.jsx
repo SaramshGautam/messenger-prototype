@@ -3,6 +3,8 @@ import MessengerApp from "./messenger/MessengerApp.jsx";
 import TaskPanel from "./components/TaskPanel.jsx";
 import TaskStrip from "./components/TaskStrip.jsx";
 import InstallPrompt from "./components/InstallPrompt.jsx";
+import SessionGate from "./components/SessionGate.jsx";
+import { logRemote, startSession, endSession, savedSession, resumeSession, getStatus, onStatus, remoteEnabled } from "./lib/remoteLog.js";
 import data from "./data/scenarios.json";
 
 // URL: ?s=T01-M&step=2  (no ?s = free exploration)
@@ -30,18 +32,41 @@ export default function App() {
   const ctxRef = useRef({});
   ctxRef.current = { scenarioId, step: step?.n ?? null, intent: step?.intent ?? null };
 
+  // Who is using the app: one study session per participant (see lib/remoteLog.js).
+  const [studySession, setStudySession] = useState(() => { const s = savedSession(); return s ? resumeSession(s) : null; });
+  const [remoteStatus, setRemoteStatus] = useState(getStatus());
+  useEffect(() => onStatus(setRemoteStatus), []);
+  const sessionRef = useRef(studySession);
+  sessionRef.current = studySession;
+
   const logEvent = useCallback((type, properties = {}) => {
     const c = ctxRef.current;
-    setEventLog((current) => [
-      ...current,
-      {
-        id: crypto.randomUUID?.() ?? String(Date.now() + Math.random()),
-        timestamp: new Date().toISOString(),
-        scenarioId: c.scenarioId, step: c.step, intent: c.intent,
-        type, ...properties,
-      },
-    ]);
+    const s = sessionRef.current;
+    const event = {
+      id: crypto.randomUUID?.() ?? String(Date.now() + Math.random()),
+      timestamp: new Date().toISOString(),
+      participantId: s?.participantId ?? null, sessionId: s?.id ?? null,
+      scenarioId: c.scenarioId, step: c.step, intent: c.intent,
+      type, ...properties,
+    };
+    setEventLog((current) => [...current, event]);
+    logRemote(event);
   }, []);
+
+  const beginSession = async (info) => {
+    const s = await startSession(info);
+    sessionRef.current = s;
+    setStudySession(s);
+    setEventLog([]);
+    logEvent("session_started", { researcher: info.researcher || null, practice: !!info.practice, remoteLogging: remoteEnabled && !info.practice });
+  };
+  const finishSession = async () => {
+    logEvent("session_ended");
+    await endSession("researcher_ended");
+    sessionRef.current = null;
+    setStudySession(null);
+    setShowTasks(false);
+  };
 
   const syncUrl = (id, idx) => {
     try {
@@ -107,9 +132,13 @@ export default function App() {
             onFree={freeExplore}
             onFire={(id) => { setFire((f) => ({ id, n: (f?.n ?? 0) + 1 })); setShowTasks(false); logEvent("trigger_fired_by_researcher", { triggerId: id }); }}
             eventLog={eventLog}
+            studySession={studySession}
+            remoteStatus={remoteStatus}
+            onEndSession={finishSession}
             onClose={() => setShowTasks(false)}
           />
         )}
+        {!studySession && <SessionGate onStart={beginSession} />}
       </div>
       <InstallPrompt />
     </div>

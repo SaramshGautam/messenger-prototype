@@ -39,6 +39,24 @@ export function ChatView({ route }) {
   const single = selMsgs.length === 1 ? selMsgs[0] : null;
   const pinned = conv.messages.filter((m) => m.pinned && !m.deletedForEveryone && !m.deletedForMe);
 
+  // Reaction tray floats next to the selected message (above it, or below if there is no room).
+  const chatRef = useRef(null);
+  const showTray = !!single && !single.call && !single.deletedForEveryone;
+  const [trayPos, setTrayPos] = useState(null);
+  const placeTray = () => {
+    if (!showTray) return;
+    const box = chatRef.current, th = thread.current;
+    const el = th?.querySelector(`[data-anchor="${single.id}"] .wa-bubble`) ?? th?.querySelector(`[data-anchor="${single.id}"]`);
+    if (!box || !el) return;
+    const b = box.getBoundingClientRect(), t = th.getBoundingClientRect(), r = el.getBoundingClientRect();
+    const H = 54, gap = 6;
+    let top = r.top - b.top - H - gap; // above the message
+    if (top < t.top - b.top + 4) top = r.bottom - b.top + gap; // no room above: below it
+    top = Math.max(t.top - b.top + 4, Math.min(top, t.bottom - b.top - H - 4)); // keep inside the chat area
+    setTrayPos({ top });
+  };
+  useLayoutEffect(() => { if (showTray) placeTray(); else setTrayPos(null); }, [single?.id, showTray]); // eslint-disable-line
+
   // Open at the bottom (or the focused message).
   useLayoutEffect(() => {
     const el = thread.current;
@@ -167,7 +185,7 @@ export function ChatView({ route }) {
 
   let lastDay = null;
   return (
-    <div className="wa-chat">
+    <div className="wa-chat" ref={chatRef}>
       {sel.length > 0 ? (
         <div className="wa-head select">
           <button className="wa-icon" onClick={clearSel} aria-label="Cancel selection"><X size={24} /></button>
@@ -206,11 +224,6 @@ export function ChatView({ route }) {
         </div>
       )}
 
-      {sel.length === 1 && !single?.call && (
-        <div className="wa-react-bar" role="group" aria-label="React to message">
-          {QUICK_REACTIONS.map((e) => <button key={e} className={single?.reactions?.[ME] === e ? "on" : ""} onClick={() => react(e)} aria-label={`React ${e}`}>{e}</button>)}
-        </div>
-      )}
 
       {pinned.length > 0 && sel.length === 0 && (
         <button className="wa-pinned" onClick={() => { log("pinned_opened", { convId: conv.id, msgId: pinned[pinned.length - 1].id }); jump(pinned[pinned.length - 1].id); }}>
@@ -228,7 +241,7 @@ export function ChatView({ route }) {
         </div>
       )}
 
-      <div className="wa-thread" ref={thread}>
+      <div className="wa-thread" ref={thread} onScroll={placeTray}>
         <p className="wa-e2e">🔒 Messages are only for the study. Everyone here is fictional.</p>
         {conv.messages.map((m) => {
           if (m.deletedForMe) return null;
@@ -237,6 +250,11 @@ export function ChatView({ route }) {
           return [sep, <Bubble key={m.id} conv={conv} m={m} selected={sel.includes(m.id)} selecting={sel.length > 0} onSelect={onSelect} onJump={jump} flash={flash === m.id} />];
         })}
       </div>
+      {showTray && trayPos && (
+        <div className={`wa-react-bar ${single.from === ME ? "mine" : ""}`} style={{ top: trayPos.top }} role="group" aria-label="React to message">
+          {QUICK_REACTIONS.map((e) => <button key={e} className={single?.reactions?.[ME] === e ? "on" : ""} onClick={() => react(e)} aria-label={`React ${e}`}>{e}</button>)}
+        </div>
+      )}
 
       {conv.blocked ? (
         <button className="wa-blocked-bar" onClick={() => { act({ type: "block", convId: conv.id, on: false }); log("contact_unblocked", { convId: conv.id, via: "composer" }); toast(`${title} unblocked`); }}>

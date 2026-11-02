@@ -67,3 +67,57 @@ scripted events and call lines live in `src/messenger/scenarios.js`.
 
 Put a photo with the same base name in `src/assets/photos/` (e.g. `lunch-flyer.webp` replaces
 `public/assets/images/lunch-flyer.svg`). Restart `npm run dev`.
+
+## Remote logging (who is using the app, and what they do)
+
+Before anything else, the app asks the researcher for a **participant ID** (e.g. `P07`, never a name).
+Every interaction is then tagged with that ID and a session ID.
+With Firebase set up, the log is saved to Firestore. Without it, the app works as before and the log stays on the device (researcher menu → Download log).
+
+"Practice without saving" runs the app without sending anything.
+
+### Data model
+
+```
+sessions/{sessionId}                   app ("messenger-prototype"), participantId, researcher, device, appVersion, startedAt, endedAt, eventCount
+sessions/{sessionId}/events/{eventId}  one document per logged event (type, scenarioId, step, intent, timestamp, details)
+```
+
+The app can only **add** data. It cannot read, change or delete logs (see `firestore.rules`).
+Logs are read with the export script below, using an admin key.
+
+### Setup (once)
+
+1. Create a project at https://console.firebase.google.com.
+2. Build → Firestore Database → Create database.
+3. Build → Authentication → Sign-in method → turn on **Anonymous**.
+4. Project settings → Your apps → add a Web app. Copy its config.
+5. Copy `.env.example` to `.env.local` and paste the values.
+6. Add the same `VITE_FIREBASE_*` values in Vercel → Settings → Environment Variables, then redeploy.
+7. Deploy the security rules:
+   ```bash
+   npm install -g firebase-tools
+   firebase login
+   firebase deploy --only firestore:rules --project <your-project-id>
+   ```
+
+### Ending a session
+
+Researcher menu (the task strip → Tasks, or Settings → Study tasks) shows the participant, the session and whether logs are saving.
+Tap **End session** before the next participant. A page reload keeps the same session.
+
+### Exporting logs
+
+1. Firebase console → Project settings → Service accounts → Generate new private key.
+   Keep this file **outside** the repo. Never commit it.
+2. Run:
+   ```bash
+   export GOOGLE_APPLICATION_CREDENTIALS=/path/to/key.json
+   export FIREBASE_PROJECT_ID=<your-project-id>
+   npm run logs:export                    # everyone
+   npm run logs:export -- --participant P07
+   ```
+3. Files land in `logs-export/<date>/`: `sessions.csv`, `events.csv`, `events.jsonl`.
+
+This app uses the same Firebase project as the sandbox (`capability-aligned`). Every session and event from this app has `app: "messenger-prototype"`, so the two apps can be told apart in the export.
+
