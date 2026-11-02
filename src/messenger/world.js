@@ -62,7 +62,8 @@ export const CURRENT_PLACE = "market"; // simulated current location (T04-M)
 
 // ---------- Study phone gallery ----------
 export const gallery = [
-  { id: "g_card", title: "Business card.jpg", src: P("business-card") },
+  { id: "g_card", title: "IMG_4021.jpg", src: P("business-card") },
+  { id: "g_card2", title: "IMG_4022.jpg", src: P("business-card-2") },
   { id: "g_picnic", title: "Picnic poster.jpg", src: P("picnic-poster-new") },
   { id: "g_market", title: "Market poster.jpg", src: P("market-poster") },
   { id: "g_flowers", title: "Garden flowers.jpg", src: P("gallery-garden-flowers") },
@@ -98,7 +99,7 @@ let n = 0;
 const m = (from, day, time, body) => ({ id: `m${++n}`, from, day, time, ...(typeof body === "string" ? { text: body } : body) });
 const img = (name, alt, file) => ({ src: name.startsWith("/") ? name : P(name), alt, name: file });
 
-const NOTICES = ["me", "maya", "lucy", "raj", "peter", "sofia", "helen", "helena", "tom", "kim", "grace"];
+const NOTICES = ["me", "maya", "lucy", "raj", "peter", "sofia", "helen", "tom", "kim", "grace"];
 
 export const conversations = [
   // ----- T01-M -----
@@ -156,9 +157,10 @@ export const conversations = [
   { id: "g_garden", kind: "group", title: "Maple Gardening", members: ["me", "emma", "oliver", "jacqueline", "rosa", "lee", "susan", "kim"], admins: ["emma"], color: "#4a8a3a",
     description: "Neighbors who garden together. Emma organizes our activities.", messages: [
       m("emma", "Sep 14", "10:00 AM", "Thanks for coming to the summer picnic, everyone!"),
-      m("emma", "Sep 14", "10:02 AM", { id: "gd_gazebo", image: img("picnic-gazebo", "The picnic area with a blue gazebo by the pond", "Picnic area.jpg"), text: "Our picnic area by the blue gazebo." }),
+      m("emma", "Sep 14", "10:02 AM", { id: "gd_gazebo", image: img("picnic-gazebo", "A blue gazebo by a pond", "IMG_1802.jpg"), text: "Our picnic area by the blue gazebo." }),
       m("rosa", "Sep 14", "11:30 AM", "What a lovely spot!"),
       m("lee", "Sep 20", "9:15 AM", { image: img("lee-garden-after-rain", "Lee’s garden after rain", "IMG_2201.jpg"), text: "My garden after the rain." }),
+      m("rosa", "Sep 21", "2:00 PM", { image: img("picnic-gazebo-white", "A white gazebo on a lawn", "IMG_2210.jpg"), text: "The new gazebo at the community garden is finally finished!" }),
       m("susan", "Sep 27", "4:00 PM", "Does anyone have spare tomato cages?"),
       m("rosa", "Sep 27", "4:20 PM", "I have two. I’ll leave them by my door."),
       m("kim", "Oct 4", "10:10 AM", { image: img("gallery-garden-flowers", "Kim’s flowers", "IMG_3310.jpg"), text: "Last flowers of the season!" }),
@@ -178,6 +180,8 @@ export const conversations = [
     description: "Announcements about the monthly Brookside Community Market.", messages: [
       m("hannah", "Oct 25", "10:00 AM", { image: img("market-poster", "Brookside Community Market poster", "Market poster.jpg"), text: "Next market: Saturday, November 8!" }),
       m("mark", "Oct 25", "11:00 AM", "The bread stall will be back 🍞"),
+      m("me", "Yesterday", "6:30 PM", { id: "mk_park", text: "Is there parking near the market?", status: "delivered",
+        receipts: { read: [["mark", "6:41 PM"], ["lucy", "7:02 PM"], ["tom", "7:30 PM"]], delivered: [["hannah", "6:30 PM"], ["grace", "6:30 PM"], ["kim", "6:31 PM"], ["promo", "6:30 PM"]] } }),
       m("me", "Today", "7:15 AM", { id: "mk_q", text: "Does anyone know what time the market opens?", status: "delivered",
         receipts: { read: [["hannah", "7:20 AM"], ["mark", "7:42 AM"], ["kim", "8:05 AM"]], delivered: [["grace", "7:15 AM"], ["lucy", "7:16 AM"], ["tom", "7:15 AM"], ["promo", "7:15 AM"]] } }),
       m("promo", "Today", "7:30 AM", "🔥 Best deals today! Message me for discounts."),
