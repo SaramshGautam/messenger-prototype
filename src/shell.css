@@ -16,7 +16,8 @@
 .task-strip-dots i.done { background: #ffffffaa; }
 .task-strip-dots i.on { background: #f7c948; }
 .task-strip-goal { margin: 4px 0 2px; font-size: 17px; font-weight: 700; }
-.task-strip-bg { margin: 4px 0 6px; font-size: 14px; opacity: .88; max-height: 7.2em; overflow-y: auto; }
+.task-strip-bg { margin: 4px 0 6px; padding-left: 20px; font-size: 14px; opacity: .88; max-height: 9em; overflow-y: auto; }
+.task-strip-bg li, .task-bg li { margin: 2px 0; }
 .task-strip-more { font-size: 12px !important; text-decoration: underline; opacity: .7; }
 
 /* Researcher task menu */
@@ -39,7 +40,7 @@
 .task-card-body { padding: 0 14px 12px; font-size: 13.5px; }
 .task-card-body ol { padding-left: 18px; display: grid; gap: 8px; }
 .task-card-body li small { display: block; color: #667788; margin-top: 2px; }
-.task-bg { background: #f4f6f8; border-radius: 10px; padding: 8px 10px; }
+.task-bg { background: #f4f6f8; border-radius: 10px; padding: 8px 10px 8px 28px; margin: 0; }
 .segmented { display: flex; background: #e1e6eb; border-radius: 10px; padding: 3px; }
 .segmented button { border: 0; background: transparent; padding: 7px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; }
 .segmented button.active { background: #fff; box-shadow: 0 1px 3px #0002; }

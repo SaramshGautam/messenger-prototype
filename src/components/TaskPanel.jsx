@@ -81,7 +81,7 @@ export default function TaskPanel({ scenarios, scenario, stepIndex, onStart, onS
               </button>
               {open === s.id && (
                 <div className="task-card-body">
-                  <p className="task-bg">{s.background}</p>
+                  <ul className="task-bg">{s.background.split("\n").filter((l) => l.trim()).map((l, i) => <li key={i}>{l}</li>)}</ul>
                   <ol>
                     {s.steps.map((st, i) => (
                       <li key={i}>

@@ -26,7 +26,7 @@ export default function TaskStrip({ scenario, stepIndex, onStep, onOpenTasks }) 
       </div>
       {open && (
         <>
-          {bg && <p className="task-strip-bg">{scenario.background}</p>}
+          {bg && <ul className="task-strip-bg">{scenario.background.split("\n").filter((l) => l.trim()).map((l, i) => <li key={i}>{l}</li>)}</ul>}
           <p className="task-strip-goal">{step.goal}</p>
           {stepIndex > 0 && (
             <button className="task-strip-more" onClick={() => setBg((v) => !v)}>{bg ? "Hide background" : "Show background"}</button>
