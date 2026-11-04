@@ -98,10 +98,64 @@ function PollView({ conv, m }) {
   );
 }
 
-export default function Bubble({ conv, m, selected, selecting, onSelect, onJump, flash }) {
+// Swipe a message sideways: right = Reply, left = Forward (a shortcut for the
+// long-press menu). The bubble follows the finger and an icon with a label shows
+// what letting go will do; nothing happens below the threshold.
+const SWIPE_AT = 64;
+const SWIPE_MAX = 96;
+function useSwipe(enabled, onDone) {
+  const s = useRef(null);
+  const swiped = useRef(0);
+  const [dx, setDx] = useState(0);
+  const end = () => {
+    const st = s.current;
+    s.current = null;
+    if (st?.active) {
+      swiped.current = Date.now() + 400;
+      if (Math.abs(st.dx) >= SWIPE_AT) onDone(st.dx > 0 ? "reply" : "forward");
+    }
+    setDx(0);
+  };
+  return {
+    dx,
+    down(e) { s.current = enabled ? { x: e.clientX, y: e.clientY, dx: 0, active: false, buzzed: false } : null; },
+    move(e) {
+      const st = s.current;
+      if (!st) return;
+      const ddx = e.clientX - st.x, ddy = e.clientY - st.y;
+      if (!st.active) {
+        if (Math.abs(ddx) > 12 && Math.abs(ddx) > Math.abs(ddy) * 1.5) {
+          st.active = true;
+          try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* ignore */ }
+        } else if (Math.abs(ddy) > 12) { s.current = null; return; }
+        else return;
+      }
+      st.dx = Math.max(-SWIPE_MAX, Math.min(SWIPE_MAX, ddx));
+      if (!st.buzzed && Math.abs(st.dx) >= SWIPE_AT) { st.buzzed = true; try { navigator.vibrate?.(12); } catch { /* ignore */ } }
+      setDx(st.dx);
+    },
+    up: end,
+    cancel() { s.current = null; setDx(0); },
+    blockClick(e) { if (Date.now() < swiped.current) { e.preventDefault(); e.stopPropagation(); } },
+  };
+}
+
+export default function Bubble({ conv, m, selected, selecting, onSelect, onJump, flash, onSwipe }) {
   const { world, nav, openViewer, log } = useM();
   const mine = m.from === ME;
   const press = useLongPress(() => onSelect(m, "longpress"), () => {});
+  const canSwipe = Boolean(onSwipe) && !selecting && !m.system && !m.deletedForEveryone && !m.call;
+  const swipe = useSwipe(canSwipe, (dir) => onSwipe(m, dir));
+  const gestures = {
+    ...press,
+    onPointerDown: (e) => { press.onPointerDown(e); swipe.down(e); },
+    onPointerMove: (e) => { press.onPointerMove(e); swipe.move(e); },
+    onPointerUp: (e) => { press.onPointerUp(e); swipe.up(); },
+    onPointerCancel: (e) => { press.onPointerCancel(e); swipe.cancel(); },
+    onPointerLeave: (e) => { press.onPointerLeave(e); if (!swipe.dx) swipe.cancel(); },
+    onClickCapture: (e) => { swipe.blockClick(e); press.onClickCapture(e); },
+  };
+  const pull = Math.min(1, Math.abs(swipe.dx) / SWIPE_AT);
   if (m.deletedForMe) return null;
   if (m.system) return <div className="wa-system" data-anchor={m.id}><span>{m.system}</span></div>;
 
@@ -161,7 +215,14 @@ export default function Bubble({ conv, m, selected, selecting, onSelect, onJump,
 
   return (
     <div className={`wa-msg ${mine ? "mine" : ""} ${selected ? "selected" : ""} ${flash ? "flash" : ""}`} data-anchor={m.id} onClickCapture={capture}>
-      <div className={`wa-bubble ${m.image && !m.text ? "media" : ""}`} {...press} aria-label="Message. Press and hold to select.">
+      <div className="wa-swipe">
+      {swipe.dx !== 0 && (
+        <span className={`wa-swipe-hint ${swipe.dx > 0 ? "reply" : "forward"} ${pull >= 1 ? "ready" : ""}`} style={{ opacity: 0.35 + pull * 0.65 }} aria-hidden="true">
+          {swipe.dx > 0 ? <CornerUpLeft size={20} /> : <Forward size={20} />}
+          <small>{swipe.dx > 0 ? "Reply" : "Forward"}</small>
+        </span>
+      )}
+      <div className={`wa-bubble ${m.image && !m.text ? "media" : ""}`} {...gestures} style={swipe.dx ? { transform: `translateX(${swipe.dx}px)` } : undefined} aria-label="Message. Press and hold to select, or swipe right to reply and left to forward.">
         {group && <strong className="wa-sender" style={{ color: nameColor(m.from) }}>{contact(world, m.from).name}</strong>}
         {body}
         <span className="wa-meta">
@@ -172,6 +233,7 @@ export default function Bubble({ conv, m, selected, selecting, onSelect, onJump,
             ? <Check size={15} className="wa-ticks sent" aria-label="Sent" />
             : <CheckCheck size={15} className={m.status === "delivered" ? "wa-ticks delivered" : "wa-ticks"} aria-label={m.status === "delivered" ? "Delivered" : "Read"} />)}
         </span>
+      </div>
       </div>
       {reacts.length > 0 && (
         <span className="wa-reacts" aria-label={`Reactions: ${reacts.map(([, e]) => e).join(" ")}`}>

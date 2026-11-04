@@ -127,6 +127,18 @@ export function ChatView({ route }) {
   const canDeleteForEveryone = selMsgs.length > 0 && selMsgs.every((m) => m.from === ME && !m.call);
   const canEdit = single && single.from === ME && single.text && !single.call && !single.poll;
 
+  // Swipe shortcut: right = Reply, left = Forward (same result as the long-press menu).
+  const onSwipe = (m, dir) => {
+    log("message_swiped", { convId: conv.id, msgId: m.id, direction: dir === "reply" ? "right" : "left", action: dir });
+    if (dir === "reply") {
+      if (!iAmMember || conv.blocked) { toast("You can’t reply in this chat"); return; }
+      setReplyTo(m); setEditing(null); clearSel();
+      setTimeout(() => input.current?.focus(), 0);
+    } else {
+      openForward({ convId: conv.id, msgIds: [m.id] });
+    }
+  };
+
   const doAction = (kind) => {
     const ids = [...sel];
     log("selection_action", { action: kind, convId: conv.id, msgIds: ids });
@@ -247,7 +259,7 @@ export function ChatView({ route }) {
           if (m.deletedForMe) return null;
           const sep = m.day !== lastDay ? <div className="wa-day" key={`d-${m.id}`}><span>{m.day}</span></div> : null;
           lastDay = m.day;
-          return [sep, <Bubble key={m.id} conv={conv} m={m} selected={sel.includes(m.id)} selecting={sel.length > 0} onSelect={onSelect} onJump={jump} flash={flash === m.id} />];
+          return [sep, <Bubble key={m.id} conv={conv} m={m} selected={sel.includes(m.id)} selecting={sel.length > 0} onSelect={onSelect} onJump={jump} flash={flash === m.id} onSwipe={conv.id ? onSwipe : undefined} />];
         })}
       </div>
       {showTray && trayPos && (

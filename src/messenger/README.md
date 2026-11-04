@@ -5,7 +5,7 @@
 | `world.js` | Shared baseline: contacts (incl. the unsaved +123456789 number), chats and groups, read receipts, gallery, places (current location = Brookside Community Market), statuses |
 | `scenarios.js` | Start screen per scenario and extra state (T04-M: your blurry status is already posted) |
 | `store.js` | State updates (send, react, star, pin, delete, edit, vote, block, archive, add/delete your status…) |
-| `MessengerApp.jsx` | Shell: tabs (Chats, Updates, Calls, Settings), navigation, overlays |
+| `MessengerApp.jsx` | Shell: tabs (Chats, Status, Calls, Settings), navigation, overlays |
 | `components/` | `Lists.jsx` (chats, filters, search), `ChatView.jsx`, `Bubble.jsx`, `Pickers.jsx` (attach: Document, Gallery, Location incl. live location, Contact; Forward), `Info.jsx` (contact/group info, shared media, message info), `Calls.jsx`, `Status.jsx` |
 
 ## Scenarios
@@ -24,4 +24,4 @@ No scripted (delayed) events in this task bank.
 * **Select a message**: press and hold. Then Reply, Star, Delete, Copy, Forward, ⋮ (Pin, Edit, Info for your own messages). An emoji row appears for reactions.
 * **Ticks**: grey ✓✓ delivered, blue ✓✓ read. ⋮ → Info shows times (private chat) or Read by / Delivered to (group).
 * **Group info**: tap the chat name. Media, links and docs opens all shared photos.
-* **Status**: Updates tab. Camera icon next to My status adds a photo status. Open My status → ⋮ → Delete; the eye button shows who viewed it.
+* **Status**: Status tab. Camera icon next to My status adds a photo status. Open My status → ⋮ → Delete; the eye button shows who viewed it.

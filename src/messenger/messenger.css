@@ -99,6 +99,17 @@
 .wa-msg.flash .wa-bubble { box-shadow: 0 0 0 3px #f7c948; }
 .wa-bubble { background: var(--wa-other); border-radius: 0 10px 10px 10px; padding: 6px 9px 5px; box-shadow: 0 1px .5px #0b141a21; display: grid; gap: 4px; min-width: 90px; max-width: 100%; overflow-wrap: anywhere; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 .wa-msg.mine .wa-bubble { background: var(--wa-mine); border-radius: 10px 0 10px 10px; }
+/* Swipe to reply (right) / forward (left) */
+.wa-swipe { position: relative; max-width: 100%; display: flex; flex-direction: column; align-items: inherit; }
+.wa-swipe .wa-bubble { position: relative; z-index: 1; }
+.wa-swipe .wa-bubble img { -webkit-user-drag: none; user-drag: none; pointer-events: none; }
+.wa-swipe-hint { position: absolute; top: min(50%, 40px); transform: translateY(-50%); z-index: 0; display: grid; justify-items: center; gap: 1px; color: #54656f; pointer-events: none; }
+.wa-swipe-hint svg { width: 32px; height: 32px; padding: 6px; border-radius: 50%; background: #ffffffcc; box-shadow: 0 1px 2px #0002; }
+.wa-swipe-hint small { font-size: 11px; font-weight: 700; background: #ffffffcc; border-radius: 6px; padding: 0 4px; }
+.wa-swipe-hint.reply { left: 4px; }
+.wa-swipe-hint.forward { right: 4px; }
+.wa-swipe-hint.ready { color: var(--wa-dark); }
+.wa-swipe-hint.ready svg { background: #fff; }
 .wa-bubble.media { padding: 3px; }
 .wa-sender { font-size: 14px; }
 .wa-text { font-size: 16.5px; line-height: 1.38; white-space: pre-wrap; }

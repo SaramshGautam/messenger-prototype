@@ -20,7 +20,7 @@ export const contacts = {
   helen: { id: "helen", name: "Helen Williams", phone: "+1 555-0141", about: "Oak Court, apartment 2C", avatar: A + "maria-santos.webp" },
   lucy: { id: "lucy", name: "Lucy Chen", phone: "+1 555-0142", about: "Oak Court", avatar: A + "priya-shah.webp" },
   raj: { id: "raj", name: "Raj Mehta", phone: "+1 555-0143", about: "Available" },
-  peter: { id: "peter", name: "Peter Wong", phone: "+1 555-0144", about: "Oak Court", avatar: A + "pat-williams.webp" },
+  peter: { id: "peter", name: "Peter Wong", phone: "+1 555-0144", about: "Oak Court" }, // photo: src/assets/photos/avatars/peter.webp (initials until then)
   sofia: { id: "sofia", name: "Sofia Rossi", phone: "+1 555-0145", about: "Available" },
   helena: { id: "helena", name: "Helena Ward", phone: "+1 555-0146", about: "Oak Court, apartment 6A" },
   // T03-M
@@ -31,7 +31,7 @@ export const contacts = {
   rosa: { id: "rosa", name: "Rosa Martinez", phone: "+1 555-0125", about: "Garden Club", avatar: A + "rosa-martinez.webp" },
   // T04-M
   grace: { id: "grace", name: "Grace Hill", phone: "+1 555-0129", about: "Available", avatar: A + "grace-hill.webp" },
-  hannah: { id: "hannah", name: "Hannah Brooks", phone: "+1 555-0161", about: "Brookside Community Market organizer", avatar: A + "daniel-brooks.webp" },
+  hannah: { id: "hannah", name: "Hannah Brooks", phone: "+1 555-0161", about: "Brookside Community Market organizer" }, // photo: src/assets/photos/avatars/hannah.webp (initials until then)
   mark: { id: "mark", name: "Mark Ellis", phone: "+1 555-0162", about: "Bread stall" },
   // Everyday contacts
   susan: { id: "susan", name: "Susan Clark", phone: "+1 555-0113", about: "Busy cooking", avatar: A + "susan-clark.webp" },

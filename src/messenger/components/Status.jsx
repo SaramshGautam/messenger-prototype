@@ -17,7 +17,7 @@ export function UpdatesTab() {
   );
   return (
     <div className="wa-page">
-      <div className="wa-top"><strong className="wa-brand">Updates</strong><span><button className="wa-icon" aria-label="More options"><MoreVertical size={22} /></button></span></div>
+      <div className="wa-top"><strong className="wa-brand">Status</strong><span><button className="wa-icon" aria-label="More options"><MoreVertical size={22} /></button></span></div>
       <h3 className="wa-section big">Status</h3>
       <div className="wa-conv wa-my-status">
         <button className="wa-my-status-open" onClick={() => (mine.length ? openStatus(ME) : setCreating(true))} aria-label={mine.length ? "View my status" : "Add status update"}>

@@ -13,7 +13,7 @@ import { ForwardSheet } from "./components/Pickers.jsx";
 
 const TABS = [
   { id: "chats", label: "Chats", icon: MessageCircle },
-  { id: "updates", label: "Updates", icon: CircleDashed },
+  { id: "updates", label: "Status", icon: CircleDashed },
   { id: "calls", label: "Calls", icon: Phone },
   { id: "settings", label: "Settings", icon: Settings },
 ];
