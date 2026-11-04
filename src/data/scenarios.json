@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T18:30:01.360Z",
+  "generatedAt": "2026-11-04T19:34:26.814Z",
   "scenarios": [
     {
       "id": "T01-M",
@@ -114,7 +114,7 @@
         {
           "n": 1,
           "intent": "Find",
-          "goal": "A few weeks ago, Emma shared a photo of the place where an earlier picnic was held. Many messages and photos have been posted since then. Find that photo in the group chat.",
+          "goal": "Around mid-September, Emma shared a photo of the place where an earlier picnic was held. Many messages and photos have been posted since then. Find that photo in the group chat.",
           "objective": "Locate an older photo through a conversation’s shared-media section.",
           "demands": "1. Open the group information.\n2. Open Media, links and docs.\n3. Browse the photos.\n4. Open the photo showing the blue gazebo.",
           "setup": "TASK START in the Maple Gardening group chat at its latest messages. Emma’s blue-gazebo photo (Sep 14, IMG_1802.jpg) is not visible without scrolling far back. Shared media has 8 photos, including Rosa’s white-gazebo photo (Sep 21) and two picnic posters.",

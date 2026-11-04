@@ -39,7 +39,7 @@ Your neighbor Ben lives in the building, but he is not in this group.","You want
 T-03M,Find,"You and some neighbors use the Maple Gardening group chat to talk about gardening and plan activities.
 You are helping Emma plan a picnic.
 Oliver is also in the group. He plans to come.
-Jacqueline is another neighbor who wants to join these activities.","A few weeks ago, Emma shared a photo of the place where an earlier picnic was held. Many messages and photos have been posted since then. Find that photo in the group chat.",Locate an older photo through a conversation’s shared-media section.,"1. Open the group information.
+Jacqueline is another neighbor who wants to join these activities.","Around mid-September, Emma shared a photo of the place where an earlier picnic was held. Many messages and photos have been posted since then. Find that photo in the group chat.",Locate an older photo through a conversation’s shared-media section.,"1. Open the group information.
 2. Open Media, links and docs.
 3. Browse the photos.
 4. Open the photo showing the blue gazebo.","TASK START in the Maple Gardening group chat at its latest messages. Emma’s blue-gazebo photo (Sep 14, IMG_1802.jpg) is not visible without scrolling far back. Shared media has 8 photos, including Rosa’s white-gazebo photo (Sep 21) and two picnic posters.",The participant opens Emma’s blue-gazebo photo (not Rosa’s white gazebo).,
