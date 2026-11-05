@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-04T19:34:26.814Z",
+  "generatedAt": "2026-11-05T03:22:00.187Z",
   "scenarios": [
     {
       "id": "T01-M",
@@ -117,7 +117,7 @@
           "goal": "Around mid-September, Emma shared a photo of the place where an earlier picnic was held. Many messages and photos have been posted since then. Find that photo in the group chat.",
           "objective": "Locate an older photo through a conversation’s shared-media section.",
           "demands": "1. Open the group information.\n2. Open Media, links and docs.\n3. Browse the photos.\n4. Open the photo showing the blue gazebo.",
-          "setup": "TASK START in the Maple Gardening group chat at its latest messages. Emma’s blue-gazebo photo (Sep 14, IMG_1802.jpg) is not visible without scrolling far back. Shared media has 8 photos, including Rosa’s white-gazebo photo (Sep 21) and two picnic posters.",
+          "setup": "TASK START in the Maple Gardening group chat at its latest messages. Emma’s blue-gazebo photo (Sep 14, IMG_1802.jpg) is not visible without scrolling far back. Shared media has 14 photos, including Rosa’s white-gazebo photo (Sep 21), six other picnic-area and picnic-food photos, and two picnic posters (which also show a blue gazebo).",
           "outcome": "The participant opens Emma’s blue-gazebo photo (not Rosa’s white gazebo).",
           "notes": "",
           "sourceRow": 10
@@ -139,9 +139,9 @@
           "goal": "Emma’s poster for this week’s picnic is saved in your phone’s photos. Post it to your status so your contacts can see it and join.",
           "objective": "Publish a status (story).",
           "demands": "1. Open the Status tab.\n2. Add a status from the gallery.\n3. Select the picnic poster.\n4. Check the preview.\n5. Post it.\n6. Verify that it appears under My status.",
-          "setup": "CONTINUE. The gallery contains the UPDATED picnic poster (Maple Gardens) with other photos. My status is empty.",
-          "outcome": "The picnic poster appears under My status.",
-          "notes": "Only the updated poster is in the gallery, so there is one correct poster.",
+          "setup": "CONTINUE. The gallery contains the UPDATED picnic poster (1–3 p.m.",
+          "outcome": "marked UPDATED TIME) with other photos. My status is empty.",
+          "notes": "The picnic poster appears under My status.",
           "sourceRow": 12
         },
         {
@@ -149,8 +149,8 @@
           "intent": "Respond",
           "goal": "Emma sent a poster for the picnic, then sent a new version this morning. Oliver posted the old version in his status. Reply to his status privately: tell him there is a new poster, and ask him to post it instead.",
           "objective": "Send a status (story) reply.",
-          "demands": "1. Open Oliver’s status.\n2. Select the reply field.\n3. Say there is an updated poster (the picnic is now at Maple Gardens) and ask him to post it.\n4. Send the reply.",
-          "setup": "CONTINUE. Oliver’s status shows the old poster with “Riverside Park”. Replies are enabled. Old poster: Maple Gardening Community Picnic, November 21, noon–3 p.m., Riverside Park. Updated poster: same, Maple Gardens, marked UPDATED LOCATION.",
+          "demands": "1. Open Oliver’s status.\n2. Select the reply field.\n3. Say there is an updated poster (the picnic now starts at 1 p.m.) and ask him to post it.\n4. Send the reply.",
+          "setup": "CONTINUE. Oliver’s status shows the old poster with “12–2 p.m.”. Replies are enabled. Old poster: Maple Gardening Community Picnic, Saturday, November 7, 12–2 p.m., Blue Gazebo, Maple Park. Updated poster: same, 1–3 p.m., marked UPDATED TIME.",
           "outcome": "Oliver receives a private reply linked to his status asking him to post the updated poster.",
           "notes": "",
           "sourceRow": 13

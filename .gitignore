@@ -7,3 +7,6 @@ dist
 logs-export/
 *service-account*.json
 .firebase/
+
+# Full-size original pictures (resized copies live in src/assets/photos and public/assets)
+assets-source/

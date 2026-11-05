@@ -11,8 +11,8 @@ export const ME = "me";
 export const contacts = {
   me: { id: "me", name: "Jordan Morgan", phone: "+1 555-0100", about: "Hey there! I am using Chat." },
   // T01-M
-  alex: { id: "alex", name: "Alex Turner", phone: "+1 555-014-7720", about: "Maintenance technician · Turner Home Repairs", avatar: A + "omar-haddad.webp" },
-  david: { id: "david", name: "David Miller", phone: "+1 555-0131", about: "Neighbor", avatar: A + "david-morgan.webp" },
+  alex: { id: "alex", name: "Alex Turner", phone: "+1 202-555-0147", about: "Maintenance technician · Turner Home Repairs", avatar: A + "alex-turner.webp" },
+  david: { id: "david", name: "David Miller", phone: "+1 555-0131", about: "Neighbor", avatar: A + "david-miller.webp" },
   nora: { id: "nora", name: "Nora Kim", phone: "+1 555-0119", about: "Neighbor", avatar: A + "nora-kim.webp" },
   // T02-M
   maya: { id: "maya", name: "Maya Patel", phone: "+1 555-0117", about: "Property manager, Oak Court", avatar: A + "maya-patel.webp" },
@@ -24,9 +24,9 @@ export const contacts = {
   sofia: { id: "sofia", name: "Sofia Rossi", phone: "+1 555-0145", about: "Available" },
   helena: { id: "helena", name: "Helena Ward", phone: "+1 555-0146", about: "Oak Court, apartment 6A" },
   // T03-M
-  emma: { id: "emma", name: "Emma Davis", phone: "+1 555-0151", about: "Maple Gardening organizer", avatar: A + "elena-ruiz.webp" },
-  oliver: { id: "oliver", name: "Oliver Grant", phone: "+1 555-0152", about: "Available", avatar: A + "luis-ortega.webp" },
-  jacqueline: { id: "jacqueline", name: "Jacqueline Moore", phone: "+1 555-0153", about: "Gardening and good books", avatar: A + "anna-morgan.webp" },
+  emma: { id: "emma", name: "Emma Davis", phone: "+1 555-0151", about: "Maple Gardening organizer", avatar: A + "emma-davis.webp" },
+  oliver: { id: "oliver", name: "Oliver Grant", phone: "+1 555-0152", about: "Available", avatar: A + "oliver-grant.webp" },
+  jacqueline: { id: "jacqueline", name: "Jacqueline Moore", phone: "+1 555-0153", about: "Gardening and good books", avatar: A + "jacqueline-moore.webp" },
   jackie: { id: "jackie", name: "Jack Moore", phone: "+1 555-0154", about: "Available" },
   rosa: { id: "rosa", name: "Rosa Martinez", phone: "+1 555-0125", about: "Garden Club", avatar: A + "rosa-martinez.webp" },
   // T04-M
@@ -76,7 +76,7 @@ export const gallery = [
 // Your own status lives in `myStatus` (scenarios.js preloads it where needed).
 export const statuses = [
   { author: "oliver", time: "1 hour ago", items: [
-    { id: "ol_1", kind: "image", src: P("picnic-poster-old"), alt: "Maple Gardening community picnic poster: November 21, noon–3 p.m., Riverside Park" },
+    { id: "ol_1", kind: "image", src: P("picnic-poster-old"), alt: "Maple Gardening community picnic poster: Saturday, November 7, 12–2 p.m., Blue Gazebo, Maple Park" },
   ] },
   { author: "sam", time: "2 hours ago", items: [{ id: "ss_1", kind: "text", text: "Fresh bread from the Saturday market 🍞", bg: "#8a5a2b" }] },
   { author: "lee", time: "Today, 7:40 AM", items: [{ id: "ls_1", kind: "image", src: P("lee-garden-after-rain"), alt: "Lee’s garden after the rain" }] },
@@ -116,7 +116,7 @@ export const conversations = [
     m("nora", "Today", "9:12 AM", { id: "nr_ask", text: "Hi! Do you know a maintenance technician you would recommend?" }),
   ] },
   // ----- T02-M -----
-  { id: "g_notices", kind: "group", title: "Oak Court Notices", members: NOTICES, admins: ["maya"], color: "#41658a",
+  { id: "g_notices", kind: "group", title: "Oak Court Notices", members: NOTICES, admins: ["maya"], color: "#41658a", photo: "/assets/groups/oak-court-notices.webp",
     description: "Building rules and announcements from the Oak Court property manager.", messages: [
       m("maya", "Oct 1", "9:00 AM", "Welcome to Oak Court Notices. I will share building rules and announcements here."),
       m("maya", "Oct 1", "9:02 AM", "Reminder: Oak Court Social is for events, and Oak Court Exchange is for offering or requesting items."),
@@ -131,7 +131,7 @@ export const conversations = [
       m("lucy", "Today", "9:10 AM", { id: "nt_lunch", image: img("/assets/feed/community-lunch-flyer.webp", "Community lunch poster", "Community lunch.jpg"), text: "Community lunch this Sunday in the courtyard. Everyone is welcome!" }),
       m("kim", "Today", "9:25 AM", "Sounds lovely 😊"),
     ] },
-  { id: "g_social", kind: "group", title: "Oak Court Social", members: ["me", "lucy", "sofia", "tom", "kim", "ben"], admins: ["lucy"], color: "#d9822b",
+  { id: "g_social", kind: "group", title: "Oak Court Social", members: ["me", "lucy", "sofia", "tom", "kim", "ben"], admins: ["lucy"], color: "#d9822b", photo: "/assets/groups/oak-court-social.webp",
     description: "Events and get-togethers for Oak Court neighbors.", messages: [
       m("lucy", "Oct 18", "4:00 PM", "Board games night on Friday at 7 p.m. in the lounge!"),
       m("sofia", "Oct 18", "4:30 PM", "I’ll bring snacks."),
@@ -154,25 +154,31 @@ export const conversations = [
       m("tom", "Oct 31", "8:10 PM", "See you there!"),
     ] },
   // ----- T03-M -----
-  { id: "g_garden", kind: "group", title: "Maple Gardening", members: ["me", "emma", "oliver", "jacqueline", "rosa", "lee", "susan", "kim"], admins: ["emma"], color: "#4a8a3a",
+  { id: "g_garden", kind: "group", title: "Maple Gardening", members: ["me", "emma", "oliver", "jacqueline", "rosa", "lee", "susan", "kim"], admins: ["emma"], color: "#4a8a3a", photo: "/assets/groups/maple-gardening.webp",
     description: "Neighbors who garden together. Emma organizes our activities.", messages: [
       m("emma", "Sep 14", "10:00 AM", "Thanks for coming to the summer picnic, everyone!"),
       m("emma", "Sep 14", "10:02 AM", { id: "gd_gazebo", image: img("picnic-gazebo", "A blue gazebo by a pond", "IMG_1802.jpg"), text: "Our picnic area by the blue gazebo." }),
       m("rosa", "Sep 14", "11:30 AM", "What a lovely spot!"),
+      m("rosa", "Sep 16", "4:10 PM", { image: img("picnic-other-2", "Picnic tables by a creek", "IMG_1840.jpg"), text: "Found these tables by the creek. Nice for a picnic one day?" }),
       m("lee", "Sep 20", "9:15 AM", { image: img("lee-garden-after-rain", "Lee’s garden after rain", "IMG_2201.jpg"), text: "My garden after the rain." }),
       m("rosa", "Sep 21", "2:00 PM", { image: img("picnic-gazebo-white", "A white gazebo on a lawn", "IMG_2210.jpg"), text: "The new gazebo at the community garden is finally finished!" }),
       m("susan", "Sep 27", "4:00 PM", "Does anyone have spare tomato cages?"),
       m("rosa", "Sep 27", "4:20 PM", "I have two. I’ll leave them by my door."),
+      m("kim", "Sep 27", "6:15 PM", { image: img("picnic-other-1", "A picnic shelter in the woods", "IMG_2290.jpg"), text: "The picnic shelter at Pine Woods is open again." }),
+      m("oliver", "Oct 2", "11:00 AM", { image: img("picnic-other-3", "Picnic tables in a grassy park", "IMG_2988.jpg"), text: "Lots of picnic tables at Hill Park." }),
       m("kim", "Oct 4", "10:10 AM", { image: img("gallery-garden-flowers", "Kim’s flowers", "IMG_3310.jpg"), text: "Last flowers of the season!" }),
       m("emma", "Oct 11", "9:00 AM", "Seed swap next month. Start saving your seeds!"),
       m("oliver", "Oct 11", "9:30 AM", "Great idea."),
+      m("lee", "Oct 12", "3:40 PM", { image: img("picnic-other-4", "A grassy hill with trees", "IMG_3601.jpg"), text: "Beautiful afternoon for a walk." }),
+      m("susan", "Oct 14", "1:15 PM", { image: img("picnic-other-5", "Picnic food on a table outdoors", "IMG_3720.jpg"), text: "Lunch at my cousin’s garden party 😋" }),
       m("rosa", "Oct 18", "3:00 PM", { image: img("balcony-plants", "Basil and mint on a balcony", "IMG_4402.jpg"), text: "My balcony herbs are still going." }),
       m("lee", "Oct 25", "12:00 PM", { image: img("finished-flower-bed", "A replanted flower bed", "IMG_4510.jpg"), text: "The new flower bed at the corner." }),
       m("susan", "Oct 25", "12:30 PM", "Beautiful work, Lee!"),
-      m("emma", "Oct 30", "5:00 PM", { id: "gd_poster_old", image: img("picnic-poster-old", "Community picnic poster: November 21, noon–3 p.m., Riverside Park", "Picnic poster.jpg"), text: "Here is the poster for our community picnic on November 21!" }),
+      m("rosa", "Oct 26", "5:30 PM", { image: img("picnic-other-7", "Neighbors sharing food under a tent", "IMG_4560.jpg"), text: "Potluck at the church yesterday!" }),
+      m("emma", "Oct 30", "5:00 PM", { id: "gd_poster_old", image: img("picnic-poster-old", "Community picnic poster: Saturday, November 7, 12–2 p.m., Blue Gazebo, Maple Park", "Picnic poster.jpg"), text: "Here is the poster for our community picnic on November 7!" }),
       m("oliver", "Oct 30", "5:20 PM", "I’ll share it on my status 👍"),
       m("kim", "Yesterday", "6:00 PM", "Count me in!"),
-      m("emma", "Today", "8:05 AM", { id: "gd_poster_new", image: img("picnic-poster-new", "Updated community picnic poster: November 21, noon–3 p.m., Maple Gardens (updated location)", "Picnic poster updated.jpg"), text: "Updated poster: the picnic has moved to Maple Gardens. Same date and time." }),
+      m("emma", "Today", "8:05 AM", { id: "gd_poster_new", image: img("picnic-poster-new", "Updated community picnic poster: Saturday, November 7, 1–3 p.m. (updated time), Blue Gazebo, Maple Park", "Picnic poster updated.jpg"), text: "Updated poster: the picnic now starts at 1 p.m. and ends at 3. Same date and place." }),
       m("rosa", "Today", "8:30 AM", "Thanks for the update, Emma!"),
     ] },
   // ----- T04-M -----

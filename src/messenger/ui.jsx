@@ -17,6 +17,7 @@ export function PersonAvatar({ id, size }) {
 export function ConvAvatar({ conv, size }) {
   if (conv.kind === "dm") return <PersonAvatar id={conv.with} size={size} />;
   const initials = conv.title.split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+  if (conv.photo) return <Avatar src={conv.photo} name={conv.title} initials={initials} size={size} />;
   return <span className={`avatar wa-group-avatar ${size ? `avatar-${size}` : ""}`} style={{ background: conv.color ?? "#2e7d6b" }} aria-hidden>{initials}</span>;
 }
 
