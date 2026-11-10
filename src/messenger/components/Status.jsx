@@ -17,18 +17,18 @@ export function UpdatesTab() {
   );
   return (
     <div className="wa-page">
-      <div className="wa-top"><strong className="wa-brand">Status</strong><span><button className="wa-icon" aria-label="More options"><MoreVertical size={22} /></button></span></div>
-      <h3 className="wa-section big">Status</h3>
+      <div className="wa-top"><strong className="wa-brand">Stories</strong><span><button className="wa-icon" aria-label="More options"><MoreVertical size={22} /></button></span></div>
+      <h3 className="wa-section big">Stories</h3>
       <div className="wa-conv wa-my-status">
-        <button className="wa-my-status-open" onClick={() => (mine.length ? openStatus(ME) : setCreating(true))} aria-label={mine.length ? "View my status" : "Add status update"}>
+        <button className="wa-my-status-open" onClick={() => (mine.length ? openStatus(ME) : setCreating(true))} aria-label={mine.length ? "View my story" : "Add to my story"}>
           <span className={mine.length ? "wa-status-ring viewed" : "wa-avatar-check"}><PersonAvatar id="me" />{!mine.length && <i className="plus"><Plus size={12} /></i>}</span>
-          <span className="wa-conv-copy"><strong>My status</strong><small>{mine.length ? `${mine.length} update${mine.length > 1 ? "s" : ""} · ${mine[mine.length - 1].time}` : "Tap to add status update"}</small></span>
+          <span className="wa-conv-copy"><strong>My story</strong><small>{mine.length ? `${mine.length} photo${mine.length > 1 ? "s" : ""} · ${mine[mine.length - 1].time}` : "Tap to add to your story"}</small></span>
         </button>
-        <button className="wa-icon wa-add-status" onClick={() => { log("status_add_opened", {}); setCreating(true); }} aria-label="Add status"><Camera size={22} /></button>
+        <button className="wa-icon wa-add-status" onClick={() => { log("status_add_opened", {}); setCreating(true); }} aria-label="Add to story"><Camera size={22} /></button>
       </div>
-      {recent.length > 0 && <h3 className="wa-section">Recent updates</h3>}
+      {recent.length > 0 && <h3 className="wa-section">Recent stories</h3>}
       {recent.map((s) => <Row key={s.author} s={s} />)}
-      {viewed.length > 0 && <h3 className="wa-section">Viewed updates</h3>}
+      {viewed.length > 0 && <h3 className="wa-section">Viewed stories</h3>}
       {viewed.map((s) => <Row key={s.author} s={s} />)}
       {creating && <StatusCreator onClose={() => setCreating(false)} />}
     </div>
@@ -87,12 +87,12 @@ export function StatusViewer({ author, onClose }) {
   };
 
   return (
-    <div className="wa-status" role="dialog" aria-label={`${contact(world, author).name}’s status`}>
+    <div className="wa-status" role="dialog" aria-label={`${contact(world, author).name}’s story`}>
       <div className="wa-status-bars">{s.items.map((it, k) => <span key={it.id}><i style={{ width: k < i ? "100%" : k === i ? `${Math.min(100, (elapsed / ITEM_MS) * 100)}%` : "0%" }} /></span>)}</div>
       <div className="wa-status-top">
-        <button className="wa-icon" onClick={() => { log("status_closed", { author, itemId: item.id }); onClose(); }} aria-label="Close status"><X size={26} /></button>
+        <button className="wa-icon" onClick={() => { log("status_closed", { author, itemId: item.id }); onClose(); }} aria-label="Close story"><X size={26} /></button>
         <PersonAvatar id={author} size="sm" />
-        <span><strong>{mine ? "My status" : contact(world, author).name}</strong><small>{mine ? item.time : s.time}</small></span>
+        <span><strong>{mine ? "My story" : contact(world, author).name}</strong><small>{mine ? item.time : s.time}</small></span>
         <button className="wa-icon" onClick={() => setPaused((p) => !p)} aria-label={paused ? "Play" : "Pause"}>{paused ? "▶" : "❚❚"}</button>
         {mine && <button className="wa-icon" onClick={() => { setMenu(true); log("my_status_menu_opened", { itemId: item.id }); }} aria-label="More options"><MoreVertical size={22} /></button>}
       </div>
@@ -107,13 +107,13 @@ export function StatusViewer({ author, onClose }) {
         </button>
       ) : (
       <form className="wa-status-reply" onSubmit={submit}>
-          <input value={reply} onFocus={() => setPaused(true)} onBlur={() => !reply && setPaused(false)} onChange={(e) => setReply(e.target.value)} placeholder="Reply" aria-label={`Reply to ${contact(world, author).name}’s status`} />
+          <input value={reply} onFocus={() => setPaused(true)} onBlur={() => !reply && setPaused(false)} onChange={(e) => setReply(e.target.value)} placeholder="Reply" aria-label={`Reply to ${contact(world, author).name}’s story`} />
           <button type="submit" className="wa-send" aria-label="Send reply" disabled={!reply.trim()}><Send size={20} /></button>
         </form>
       )}
       {menu && (
         <Sheet onClose={() => setMenu(false)}>
-          <SheetItem icon={Send} label="Forward" onClick={() => { setMenu(false); toast("Forwarding a status isn’t part of this study"); }} />
+          <SheetItem icon={Send} label="Forward" onClick={() => { setMenu(false); toast("Forwarding a story isn’t part of this study"); }} />
           <SheetItem icon={Trash2} label="Delete" danger onClick={() => { setMenu(false); log("my_status_delete_opened", { itemId: item.id }); setConfirmDel(true); }} />
         </Sheet>
       )}
@@ -127,10 +127,10 @@ export function StatusViewer({ author, onClose }) {
       )}
       {confirmDel && (
         <div className="wa-dialog-backdrop" onClick={() => setConfirmDel(false)}>
-          <div className="wa-dialog" role="alertdialog" aria-label="Delete status" onClick={(e) => e.stopPropagation()}>
-            <p>Delete this status update? It will also be deleted for everyone who received it.</p>
+          <div className="wa-dialog" role="alertdialog" aria-label="Delete story" onClick={(e) => e.stopPropagation()}>
+            <p>Delete this story? It will also be deleted for everyone who received it.</p>
             <button onClick={() => { log("my_status_delete_cancelled", { itemId: item.id }); setConfirmDel(false); }}>Cancel</button>
-            <button className="danger" onClick={() => { act({ type: "deleteStatus", id: item.id }); log("my_status_deleted", { itemId: item.id }); toast("Status deleted"); setConfirmDel(false); setI(0); }}>Delete</button>
+            <button className="danger" onClick={() => { act({ type: "deleteStatus", id: item.id }); log("my_status_deleted", { itemId: item.id }); toast("Story deleted"); setConfirmDel(false); setI(0); }}>Delete</button>
           </div>
         </div>
       )}
@@ -144,7 +144,7 @@ export function StatusCreator({ onClose }) {
   const [pick, setPick] = useState(null);
   if (!pick)
     return (
-      <div className="wa-modal" role="dialog" aria-label="Add status">
+      <div className="wa-modal" role="dialog" aria-label="Add to story">
         <div className="wa-head"><button className="wa-icon" onClick={onClose} aria-label="Close"><X size={24} /></button><span className="wa-head-title"><strong>Add status</strong><small>Choose a photo</small></span><span className="wa-head-right" /></div>
         <div className="wa-gallery">
           {world.gallery.map((g) => (
@@ -157,18 +157,18 @@ export function StatusCreator({ onClose }) {
     const id = uid("mys");
     act({ type: "addStatus", id, src: pick.src, alt: pick.title, galleryId: pick.id });
     log("status_posted", { statusId: id, galleryId: pick.id, photo: pick.title });
-    toast("Status posted");
+    toast("Story posted");
     onClose();
   };
   return (
-    <div className="wa-status creator" role="dialog" aria-label="Status preview">
+    <div className="wa-status creator" role="dialog" aria-label="Story preview">
       <div className="wa-status-top">
         <button className="wa-icon" onClick={() => setPick(null)} aria-label="Back"><ChevronLeft size={26} /></button>
         <span><strong>Preview</strong><small>{pick.title}</small></span>
       </div>
       <div className="wa-status-stage"><img src={pick.src} alt={pick.title} /></div>
-      <div className="wa-status-reply"><span className="wa-status-to">Status (My contacts)</span>
-        <button className="wa-send" onClick={post} aria-label="Post status"><Send size={20} /></button></div>
+      <div className="wa-status-reply"><span className="wa-status-to">Story (My contacts)</span>
+        <button className="wa-send" onClick={post} aria-label="Post story"><Send size={20} /></button></div>
     </div>
   );
 }

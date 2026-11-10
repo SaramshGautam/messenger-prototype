@@ -178,7 +178,7 @@ export default function Bubble({ conv, m, selected, selecting, onSelect, onJump,
         {m.forwarded && <small className="wa-forwarded"><Forward size={12} /> Forwarded</small>}
         {m.statusRef && (
           <span className="wa-quote status">
-            <span><strong>{contact(world, m.statusRef.author).name} · Status</strong><small>{m.statusRef.text ?? "Photo"}</small></span>
+            <span><strong>{contact(world, m.statusRef.author).name} · Story</strong><small>{m.statusRef.text ?? "Photo"}</small></span>
             {m.statusRef.src ? <img src={m.statusRef.src} alt="" /> : <i style={{ background: m.statusRef.bg }} />}
           </span>
         )}

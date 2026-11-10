@@ -1,76 +1,92 @@
 Task ID,Intent Family,Background Information,Scenario,Task Goal,Task Demands,Sandbox setup and starting the state,Correct Outcome,Notes
-T-01M,Find,"Last week, a repair technician named Alex Turner fixed your kitchen faucet.
-He said to message him on this app if it starts leaking again. His number is saved in your phone as Alex Turner.
-He also gave you his business card. A photo of the card is on this phone.
-Today, the faucet is dripping again.
-Your neighbor David also needs a repair today. You gave him Alex’s number yesterday.
-Nora is another neighbor.",You want to tell Alex about the problem. Find Alex Turner on this app.,Locate a saved contact to initiate communication.,"1. Open search or the contact list.
-2. Search for Alex Turner.
-3. Select the correct contact.","Start at the main chat list. Alex is a saved contact, but no previous conversation with him exists. Other contacts are included.",Alex’s contact page or private conversation is displayed. No message is sent.,
-,Understand,,"This morning, you sent David a reminder: he must contact Alex before 10 a.m. to get a visit today. It is now 9:30, and David has not replied. Check if David has read your reminder. If he has, at what time?",Understand whether someone has read your message.,"1. Open David’s private conversation.
-2. Press and hold your reminder.
-3. Open ⋮ → Info.
-4. Report that it was read, at 7:52 a.m.","Start at the main chat list. David’s conversation contains your outgoing message sent at 7:30 a.m.: “Just a reminder! If you want to request a visit from Alex today, you need to contact him before 10 a.m.” Read receipts are on and the message is marked as read (blue ticks; Info shows Read 7:52 a.m.). David has not replied.",The participant reports that David read the message at 7:52 a.m.,
-,Respond,,"Nora sent you a message asking if you know a good repair technician. You are busy right now, but you want to show her you saw it. React to her message with a thumbs-up (👍).",Acknowledge a specific message using an emoji reaction.,"1. Start in Nora’s conversation.
-2. Press and hold Nora’s message to open the reaction options.
-3. Choose the thumbs-up emoji.
-4. Verify that the reaction appears on her message.",CONTINUE. Nora’s message: “Hi! Do you know a maintenance technician you would recommend?” No reaction is attached yet.,A thumbs-up reaction appears on Nora’s message.,
-,Share,,Nora needs a repair technician. Send her the business card of the technician who fixed your faucet.,Share a photo with the intended recipient.,"1. Start in Nora’s chat.
-2. Open the attachment options.
-3. Choose the photo from the gallery.
-4. Send the photo.","CONTINUE. The gallery has two business cards with neutral names: IMG_4021.jpg (Alex Turner, Turner Home Repairs) and IMG_4022.jpg (Maria Garcia, Garcia Electric), plus other photos. The technician’s name is only in the background.",Nora receives Alex Turner’s business card (not Maria Garcia’s).,
-T-02M,Find,"You live in Oak Court. You are in the Oak Court Notices group chat. Maya, the building manager, posts rules and news there.
-Your neighbor Ben lives in the building, but he is not in this group.","You want to message your neighbor Helen Williams, but you don’t have her number. She is in the Oak Court Notices group, but she has never posted. Find her in the group.",Locate a person in a group’s member list.,"1. Open the group information.
-2. Scroll to the member list.
-3. Locate Helen Williams.",TASK START in the Oak Court Notices group chat. Helen Williams is one of 10 members and has not posted.,The participant displays Helen’s entry in the group’s member list.,
-,Understand,,The building has two other group chats: Oak Court Social (for events) and Oak Court Exchange (for giving away or asking for items). You don’t remember which ones you joined. Find out which of these groups you are in.,Determine the participant’s current membership in different group chats.,"1. Open the Groups filter on the chat list.
+T-01M,Find,"Last week, a maintenance technician named Alex Turner repaired your kitchen faucet.
+He told you to message him on this app if the problem returned. You have saved his phone number as Alex Turner.
+He also gave you his business card. A photo of it is saved on this device.
+Today, you notice that the faucet is dripping again.
+Your neighbor David also needs a repair for today, and you already gave him Alex Turner’s number yesterday.
+Nora is also one of your neighbors.",You want to contact Alex about the problem. Find Alex Turner on this app.,Locate a saved contact to initiate communication.,"1. Start at the chat list.
+2. Open search or the contact list.
+3. Search for Alex Turner.
+4. Select the correct contact.","Start at the main chat list. Alex is a saved contact, but no previous conversation with him exists. Include other contacts.",Alex’s contact page or private conversation is displayed. No message is sent.,
+,Understand,,"Early in the morning, you messaged David to remind him that he needs to contact Alex before 10 a.m. to request a visit for today. It is 9:30 now and David hasn’t responded to your message. How can you tell whether he has read your message and at what time?",Understand whether someone has read your message and at what time.,"1. Start at the main chat list.
+2. Open David’s private conversation and locate your reminder about contacting Alex.
+3. Inspect its read-status indicator or message information.
+4. Report whether the app marks it as read.","Start at the main chat list. David’s conversation contains the participant’s outgoing message, sent at 7:30 a.m.: “Just a reminder! If you want to request a visit from Alex today, you need to contact him before 10 a.m.” Read receipts are enabled, and the message is marked as read. David has not replied.",The participant correctly reports that David has read the message and at what time.,
+,Respond,,"Your neighbor Nora has sent you a message asking you to recommend a maintenance technician. You are busy and cannot look up the details right now, but you want to acknowledge her message. React to it with a thumbs-up (👍).",Acknowledge a specific message using an emoji reaction.,"1. Start at the main chat list.
+2. Open Nora’s conversation.
+3. Select Nora’s message to open the reaction options.
+4. Choose the thumbs-up emoji.
+5. Verify that the reaction appears on her message.",Start at the main chat list. Open Nora’s conversation with her message visible: “Hi! Do you know a maintenance technician you would recommend?” No reaction is already attached to this message.,A thumbs-up reaction appears on Nora’s message.,
+,Share,,Your neighbor Nora needs a maintenance technician and has asked you to recommend someone. Send Alex’s business card to Nora.,Share a photo with the intended recipient.,"1. Start at the main chat list.
+2. Open Nora’s conversation.
+3. Open the attachment options in Nora’s conversation.
+4. Choose the photo from the gallery.
+5. Send the photo.",Start at the main chat list. Open Nora’s conversation with her request visible. Alex’s business card photo is already saved in the participant’s gallery.,Nora receives Alex’s business card.,
+T-02M,Find,"You live in Oak Court and belong to the Oak Court Notices group chat. Maya, the property manager, uses it to share building rules and announcements.
+Your neighbor Ben lives in the building but is not in the group.","You want to message one of your neighbors named Helen Williams, but you do not have her phone number saved. You know she belongs to the Oak Court Notices group chat, but she has never posted anything. Find her in the group.",Locate a person in a group’s member list.,"1. Open the group information.
+2. Open or expand the member list.
+3. Locate Helen Williams.","Start in the Oak Court Notices group chat. Helen is a member among several other residents, but she has not posted any messages.",The participant displays Helen’s entry in the group’s member list.,
+,Understand,,"Besides Oak Court Notices, the building has two other group chats: Oak Court Social for events and Oak Court Exchange for offering or requesting items. You cannot remember which of these other groups you have joined. How can you tell which groups you currently belong to?",Determine the participant’s current membership in different group chats.,"1. Open the Groups filter from the chat list.
 2. Review the groups displayed.
 3. Identify the Oak Court groups.
-4. Report which ones you belong to.","CONTINUE. The chat list mixes private and group chats. The participant belongs to Oak Court Notices and Oak Court Social, but not Oak Court Exchange. Book Club and Walking Group are unrelated groups.","The participant reports membership in Oak Court Notices and Oak Court Social, but not Oak Court Exchange.",
-,Respond,,"Maya posted new rules for the shared courtyard today. After that, a neighbor posted a lunch poster. You want to know if the courtyard closing time also applies on weekends. Reply directly to Maya’s rules message with your question.",Link a question to a specific group message.,"1. Locate Maya’s rules message.
+4. Report which ones you belong to.","Start at the main chat list with private and group conversations mixed together. The Groups filter displays all current group memberships. The participant belongs to Oak Court Notices and Oak Court Social, but not Oak Court Exchange. Include unrelated groups.","The participant reports membership in Oak Court Notices and Oak Court Social, but not Oak Court Exchange.",
+,Share,,"Maya has posted new rules for using the shared courtyard today. Since then, one of the neighbors has shared an announcement about a community lunch. You want to know whether the courtyard’s closing time also applies on weekends. Reply directly to Maya’s rules message to ask your question.",Link a question to a specific group message.,"1. Locate Maya’s rules message in the visible conversation.
 2. Select its Reply option.
 3. Type a question asking whether the closing time applies on weekends.
-4. Send the reply.","CONTINUE in Oak Court Notices. Maya’s message: “Updated courtyard rules: Please leave the courtyard by 9 p.m. and take all personal belongings with you.” Below it, Lucy shares a community-lunch poster. No message answers the weekend question.","The question appears as a reply linked to Maya’s courtyard-rules message, not as a standalone message or a reply to a later message.",Intent label changed from Share to Respond (it was swapped with the next row).
-,Share,,One of your neighbors lives in the building but is not in this group. Forward Maya’s courtyard rules to that neighbor in a private message.,Forward a specific group message to the intended private recipient.,"1. Locate Maya’s courtyard-rules message.
-2. Select Forward.
-3. Find and select Ben.
-4. Check that only Ben is selected.
-5. Send.",CONTINUE in Oak Court Notices. The neighbor is Ben Carter (named only in the background); he is a saved contact with a private chat and is not in the group.,Ben receives Maya’s courtyard-rules message in his private conversation.,Intent label changed from Respond to Share. Ben is not named in the instruction (AMB/MEM).
-T-03M,Find,"You and some neighbors use the Maple Gardening group chat to talk about gardening and plan activities.
-You are helping Emma plan a picnic.
-Oliver is also in the group. He plans to come.
-Jacqueline is another neighbor who wants to join these activities.","Around mid-September, Emma shared a photo of the place where an earlier picnic was held. Many messages and photos have been posted since then. Find that photo in the group chat.",Locate an older photo through a conversation’s shared-media section.,"1. Open the group information.
-2. Open Media, links and docs.
+4. Send the reply.","Start in the Oak Court Residents group chat. Maya’s message says, “Updated courtyard rules: Please leave the courtyard by 9 p.m. and take all personal belongings with you.” Below it, show a poster about a community lunch. Keep Maya’s message visible or within a short scroll. No existing message answers the weekend question.","The participant’s question appears in the group as a reply linked to Maya’s courtyard-rules message, rather than as a standalone message or a reply to a neighbor’s later message.",
+,Respond,,Maya has posted new rules for using the shared courtyard. Your neighbor Ben lives in the building but is not in the residents’ group chat. Forward Maya’s courtyard-rules message privately to Ben.,Forward a specific group message to the intended private recipient.,"1. Locate Maya’s courtyard-rules message.
+2. Select its Forward option.
+3. Find and select Ben as the recipient.
+4. Check that the correct message and only Ben are selected.
+5. Send the message.",Start in the Oak Court Residents group chat with Maya’s message visible: “Updated courtyard rules: Please leave the courtyard by 9 p.m. and take all personal belongings with you.” Ben is a saved contact and is not a member of the group.,Ben receives Maya’s courtyard-rules message in his private conversation.,
+T-03M,Find,"You and several neighbors use the Maple Gardening group chat to discuss gardening and arrange activities together.
+You are helping Emma organize a picnic.
+Oliver is also in the chat and plans to attend.
+Jacqueline is another neighbor who is interested in joining these activities.","Around mid-September, Emma shared a photo from a previous picnic in the group chat. It shows a blue gazebo. Many messages and photos have been exchanged since then, and you have not saved that photo to your device. Find the photo of the picnic area in the group chat.",Locate an older photo through a conversation’s shared-media section.,"1. Open the group’s conversation information.
+2. Open shared media.
 3. Browse the photos.
-4. Open the photo showing the blue gazebo.","TASK START in the Maple Gardening group chat at its latest messages. Emma’s blue-gazebo photo (Sep 14, IMG_1802.jpg) is not visible without scrolling far back. Shared media has 14 photos, including Rosa’s white-gazebo photo (Sep 21), six other picnic-area and picnic-food photos, and two picnic posters (which also show a blue gazebo).",The participant opens Emma’s blue-gazebo photo (not Rosa’s white gazebo).,
-,Understand,,You are not sure if Jacqueline is in the Maple Gardening group. Check if she is a member.,Determine whether a specific person belongs to a group chat.,"1. Open the group information.
-2. Scroll to the member list.
+4. Open the photo showing the blue gazebo.",Start in the group’s conversation at its latest messages. The target photo is not visible in the chat but appears among several photos in shared media.,The participant opens the correct photo from shared media.,
+,Understand,,You are unsure whether Jacqueline is already in the Maple Gardening group chat. How do you know whether she is a member? Check that.,Determine whether a specific person belongs to a group chat.,"1. Open the group information.
+2. Open or expand the member list.
 3. Look for Jacqueline.
-4. Report whether she is a member.",CONTINUE. Jacqueline Moore is one of 8 members and has not posted in the chat.,The participant checks the member list and correctly reports that Jacqueline is in the group.,
-,Share,,Emma’s poster for this week’s picnic is saved in your phone’s photos. Post it to your status so your contacts can see it and join.,Publish a status (story).,"1. Open the Status tab.
-2. Add a status from the gallery.
-3. Select the picnic poster.
+4. Report whether she is a member.","Start in the Maple Gardening group chat. Jacqueline is a member, and her name is clearly displayed in the member list among other members.",The participant checks the member list and correctly reports that Jacqueline is in the group.,Background changed. Jacqueline and some other members should be in the group chat.
+,Share,,"Emma shared a poster for this week’s community picnic, which you have saved to your device’s photo gallery. Post the poster to your Story so your contacts can see the invitation and join if they are interested.",Publish a Story.,"1. Open the Story section.
+2. Choose to add a photo from your device’s gallery.
+3. Select the community picnic poster.
 4. Check the preview.
-5. Post it.
-6. Verify that it appears under My status.",CONTINUE. The gallery contains the UPDATED picnic poster (1–3 p.m., marked UPDATED TIME) with other photos. My status is empty.,The picnic poster appears under My status.,"Only the updated poster is in the gallery, so there is one correct poster."
-,Respond,,"Emma sent a poster for the picnic, then sent a new version this morning. Oliver posted the old version in his status. Reply to his status privately: tell him there is a new poster, and ask him to post it instead.",Send a status (story) reply.,"1. Open Oliver’s status.
-2. Select the reply field.
-3. Say there is an updated poster (the picnic now starts at 1 p.m.) and ask him to post it.
-4. Send the reply.","CONTINUE. Oliver’s status shows the old poster with “12–2 p.m.”. Replies are enabled. Old poster: Maple Gardening Community Picnic, Saturday, November 7, 12–2 p.m., Blue Gazebo, Maple Park. Updated poster: same, 1–3 p.m., marked UPDATED TIME.",Oliver receives a private reply linked to his status asking him to post the updated poster.,
-T-04M,Find,"You are in the Brookside Community Market group. Neighbors share news about the monthly market there. Hannah runs the market.
-Grace is a friend.","By mistake, you posted a blurry photo of the market poster to your status. Find the status you posted.",Locate the deletion option for the participant’s own status.,"1. Open the Status tab.
-2. Open My status.
-3. See the blurry poster.",TASK START at the main chat list. My status contains the blurry poster (posted 8:40 a.m.).,The participant opens their own status showing the blurry poster.,Added “Do not delete it yet.”
-,Understand,,"A few hours ago, you asked the Brookside Community Market group what time the market opens. No one has answered. Check if the market organizer has read your question.",Identify who has read or received a specific outgoing group message.,"1. Locate your question about the opening time (not yesterday’s parking question).
-2. Press and hold it and open ⋮ → Info.
-3. Look for Hannah under Read by.
-4. Report that Hannah read it (7:20 a.m.).","CONTINUE. Your message “Does anyone know what time the market opens?” (7:15 a.m.) has newer messages below it. Your older question “Is there parking near the market?” (yesterday) is also in the chat; Hannah has not read that one. Info shows Read by: Hannah Brooks, Mark Ellis, Kim Nguyen. Delivered to: Grace Hill, Lucy Chen, Tom Baker, +123456789.","The participant reports that Hannah, the organizer, has read the opening-time question.",
-,Share,,You are at the Brookside Community Market. Your friend Grace is coming to meet you and asked where you are. Send Grace your current location.,Share the participant’s current location.,"1. Open Grace’s chat.
-2. Open the attachment options.
-3. Select Location.
-4. Send your current location.
-5. Verify that it appears in the chat.",CONTINUE. Grace’s message: “I’d like to see you today at the market. Can you send me the location?” The simulated current location is Brookside Community Market. Both current-location and live-location options are shown.,Grace receives a map pin showing the participant’s current location.,
-,Respond,,"Someone in the market group you don’t know, shown as +123456789, keeps sending you ads in private messages. Their number is not saved in your phone. Block this number so they can’t message you.",Prevent further private contact from a specific account.,"1. Open the +123456789 conversation.
-2. Open contact info or the chat menu.
-3. Select Block.
-4. Confirm.",CONTINUE. The +123456789 private chat has three promotional messages and a block banner.,+123456789 is blocked.,Blocking does not really fit the Respond family; consider relabeling.
+5. Publish the Story.
+6. Verify that it appears in your Story.",Start at the main chat list. The picnic poster is already saved in the device’s gallery alongside other images.,The correct picnic poster appears as an active Story on the participant’s account.,
+,Respond,,Emma previously shared a poster for the community picnic and sent an updated version this morning. Oliver has posted the older version in his Story. Reply privately to his Story to let him know there is an updated poster and ask him to post it instead.,Send a Story reply.,"1. Select the Story’s reply field.
+2. Explain that the poster shows the old location and that the picnic is now at Maple Gardens.
+3. Ask Oliver to post the updated poster.
+4. Send the reply.","Start with Oliver’s Story open, displaying the old poster with “Riverside Park” clearly visible. Replies are enabled.
+Older poster posted in Oliver’s Story:
+Title: Maple Gardening Community Picnic
+Date: November 21
+Time: Noon–3 p.m.
+Location: Riverside Park
+Invitation: Meet your neighbors and enjoy an afternoon outdoors. Everyone is welcome—bring a friend!
+What to bring: Bring a picnic blanket and your own lunch.
+Updated poster:
+Title: Maple Gardening Community Picnic
+Date: November 21
+Time: Noon–3 p.m.
+Location: Maple Gardens
+Location notice: Updated location
+Invitation: Meet your neighbors and enjoy an afternoon outdoors. Everyone is welcome—bring a friend!
+What to bring: Bring a picnic blanket and your own lunch.",Oliver receives a private reply linked to his Story asking him to post the updated poster.,
+T-04M,Find,"You belong to the Brookside Community Market group, where local residents share announcements about a monthly market.
+Grace is a friend.","You accidentally posted a blurry market poster to your Story. The details are unreadable, and you want to remove it. Find the option you would use to delete this Story.",Locate the deletion option for the participant’s own Story.,"1. Open your own Story.
+2. Open its options.
+3. Locate Delete without confirming deletion.",Start at the main chat list. The participant has an active Story containing the blurry poster. Its deletion option is available.,The participant finds the Delete option for their Story.,
+,Understand,,"A few hours ago, you asked in the Brookside Community Market group what time the market opens, but nobody has answered. Check whether your message has been delivered to or read by other group members.",Identify who has read or received a specific outgoing group message.,"1. Locate your message about the market’s opening time.
+2. Select the message and open its information.
+3. Inspect the “Read by” or “Delivered to” list.
+4. Report which members are listed as having read or received it.",Start in the Brookside Community Market group chat with the participant’s outgoing message visible: “Does anyone know what time the market opens?” Several newer messages appear below it. Message information is available and shows a fixed set of members under “Read by” and others under “Delivered to.”,The participant correctly identifies which members have read or received the message.,
+,Share,,You are at the Brookside Community Market. Your neighbor Grace is coming to meet you and has asked where you are. Send your current location to Grace in your private conversation.,Share the participant’s current location with someone.,"1. Open the attachment or sharing options.
+2. Select Location.
+3. Choose to send your current location.
+4. Verify that the location message appears in Grace’s conversation.",Start in Grace’s private conversation with her message visible: “I’d like to see you today in the market. Can you send me the location?” The simulated current location is set to the market. Include both current-location and live-location options.,Grace receives a map pin showing the participant’s current location.,
+,Respond,,"An unfamiliar member of the group, shown as +123456789, has been repeatedly sending you unwanted promotional messages privately. You do not know this person, and their number is not saved in your contacts. Block this person so you won’t receive unwanted messages from this number.",Prevent further private contact from a specific account.,"1. Open +123456789’s contact information or conversation options.
+2. Select Block.
+3. Confirm the action if prompted.","Start in +123456789’s private conversation, with several promotional messages visible.",+123456789 is blocked.,

@@ -176,7 +176,7 @@ export const conversations = [
       m("susan", "Oct 25", "12:30 PM", "Beautiful work, Lee!"),
       m("rosa", "Oct 26", "5:30 PM", { image: img("picnic-other-7", "Neighbors sharing food under a tent", "IMG_4560.jpg"), text: "Potluck at the church yesterday!" }),
       m("emma", "Oct 30", "5:00 PM", { id: "gd_poster_old", image: img("picnic-poster-old", "Community picnic poster: Saturday, November 7, 12–2 p.m., Blue Gazebo, Maple Park", "Picnic poster.jpg"), text: "Here is the poster for our community picnic on November 7!" }),
-      m("oliver", "Oct 30", "5:20 PM", "I’ll share it on my status 👍"),
+      m("oliver", "Oct 30", "5:20 PM", "I’ll share it on my story 👍"),
       m("kim", "Yesterday", "6:00 PM", "Count me in!"),
       m("emma", "Today", "8:05 AM", { id: "gd_poster_new", image: img("picnic-poster-new", "Updated community picnic poster: Saturday, November 7, 1–3 p.m. (updated time), Blue Gazebo, Maple Park", "Picnic poster updated.jpg"), text: "Updated poster: the picnic now starts at 1 p.m. and ends at 3. Same date and place." }),
       m("rosa", "Today", "8:30 AM", "Thanks for the update, Emma!"),
