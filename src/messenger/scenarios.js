@@ -8,15 +8,21 @@ import { photo as P } from "./photos.js";
 const chatList = { tab: "chats", stack: [] };
 const inChat = (convId, setup) => ({ tab: "chats", stack: [{ name: "chat", convId }], setup });
 
-export const START_STATES = {
-  "T01-M": chatList, // Alex Turner, David's read receipt, Nora
-  "T02-M": inChat("g_notices"), // Oak Court Notices
-  "T03-M": inChat("g_garden"), // Maple Gardening
-  "T04-M": { ...chatList, setup: (w) => { // Brookside Community Market: your blurry status is already posted
-    w.myStatus = [{ id: "my_blurry", kind: "image", src: P("market-poster-blurry"), alt: "Blurry photo of the market poster", time: "Today, 8:40 AM", viewers: [["grace", "8:52 AM"], ["sam", "9:10 AM"]] }];
-  } },
+// Everything every task needs is in the world from the start, whichever way the
+// app is opened (with or without a scenario). Participants get their tasks on
+// paper, so no state may depend on which scenario was picked in the app.
+const everything = (w) => {
+  // Your story: the blurry market poster you posted by mistake (T04-M).
+  w.myStatus = [{ id: "my_blurry", kind: "image", src: P("market-poster-blurry"), alt: "Blurry photo of the market poster", time: "Today, 8:40 AM", viewers: [["grace", "8:52 AM"], ["sam", "9:10 AM"]] }];
 };
-export const DEFAULT_START = chatList;
+
+export const START_STATES = {
+  "T01-M": { ...chatList, setup: everything }, // Alex Turner, David's read receipt, Nora
+  "T02-M": inChat("g_notices", everything), // Oak Court Notices
+  "T03-M": inChat("g_garden", everything), // Maple Gardening
+  "T04-M": { ...chatList, setup: everything }, // Brookside Community Market
+};
+export const DEFAULT_START = { ...chatList, setup: everything };
 
 // No scripted (delayed) messages or calls in this task bank.
 export const TRIGGERS = {};
